@@ -79,8 +79,7 @@ export const InitDataPage: FC = () => {
     );
   }
 
-  console.log("reciverRows", receiverRows);
-  console.log("chatRows", chatRows);
+  console.log("userRows", userRows);
   return (
     <Page>
       <List>
