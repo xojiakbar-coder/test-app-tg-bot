@@ -22,6 +22,7 @@ import {
 } from "@tanstack/react-query";
 import { MantineProvider } from "@mantine/core";
 import getApiError from "./core/utils/getApiError.ts";
+import Test from "./Test.tsx";
 
 const showApiError = (error: any) => {
   const data = getApiError(error);
@@ -98,7 +99,7 @@ try {
         <QueryClientProvider client={queryClient}>
           <HashRouter>
             <MantineProvider>
-              <App />
+              <Test />
             </MantineProvider>
           </HashRouter>
         </QueryClientProvider>
