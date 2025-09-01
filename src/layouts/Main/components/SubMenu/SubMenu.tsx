@@ -8,9 +8,7 @@ const SubMenu = () => {
   const driver = isDriver();
   const location = useLocation();
 
-  useEffect(() => {
-    console.log(driver);
-  }, [driver]);
+  useEffect(() => {}, [driver]);
 
   const navItems = [
     {

@@ -1,8 +1,8 @@
 // Include Telegram UI styles first to allow our code override the package CSS.
 import "@telegram-apps/telegram-ui/dist/styles.css";
-import "./index.css";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import "./index.css";
 
 import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
@@ -88,7 +88,6 @@ try {
     (launchParams.tgWebAppStartParam || "").includes("platformer_debug") ||
     import.meta.env.DEV;
 
-  // Configure all application dependencies.
   await init({
     debug,
     eruda: debug && ["ios", "android"].includes(platform),

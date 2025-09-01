@@ -1,5 +1,5 @@
 import styles from "./Driver.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Avatar } from "@mantine/core";
 import EmptyPage from "@/components/EmptyPage";
@@ -13,10 +13,15 @@ import { getUserData } from "@/helpers";
 
 const Driver = () => {
   const user = getUserData();
+  const location = useLocation();
   const navigate = useNavigate();
   const { driver, isLoading, isFetched } = useDriver();
 
-  useEffect(() => {}, [user, driver]);
+  useEffect(() => {
+    console.log("pathname:", location.pathname);
+    console.log("search (query):", location.search);
+    console.log("hash:", location.hash);
+  }, [user, driver]);
 
   if (isFetched && !driver?.id) {
     return (
