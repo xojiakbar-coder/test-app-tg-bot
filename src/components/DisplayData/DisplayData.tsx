@@ -6,7 +6,7 @@ import { RGB } from '@/components/RGB/RGB.tsx';
 import { Link } from '@/components/Link/Link.tsx';
 import { bem } from '@/css/bem.ts';
 
-import './DisplayData.css';
+import './DisplayData.scss';
 
 const [, e] = bem('display-data');
 

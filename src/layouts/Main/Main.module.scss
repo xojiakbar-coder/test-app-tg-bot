@@ -1,0 +1,12 @@
+.layout {
+  height: 100dvh;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.content {
+  width: 100%;
+  overflow-y: auto;
+  min-height: var(--max-height);
+  max-height: var(--max-height);
+}

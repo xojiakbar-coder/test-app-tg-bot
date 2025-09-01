@@ -1,5 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
 body {
   background: var(--tg-theme-secondary-bg-color, white);
   padding: 0;
   margin: 0;
+}
+
+:root {
+  --max-height: calc(100dvh - 80px);
+  --full-height: 100dvh;
+
+  /* font */
+  --font: "Roboto", sans-serif;
+}
+
+[role="tablist"] {
+  border: 1px solid red;
+
+  & > [role="tab"] > span {
+    font-size: 12px !important;
+    border: 1px solid green;
+  }
 }
