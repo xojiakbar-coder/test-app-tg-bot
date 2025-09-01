@@ -36,11 +36,6 @@ const showApiError = (error: any) => {
   data.message && console.error(data.message);
 };
 
-if (window.location.href.includes("tgWebAppData")) {
-  const cleanUrl = window.location.href.split("?")[0];
-  window.history.replaceState({}, document.title, cleanUrl);
-}
-
 const onQueryError = (error: any, query: any) => {
   if (query.options.meta?.customErrorHandling) return;
 
@@ -101,7 +96,7 @@ try {
     root.render(
       <StrictMode>
         <QueryClientProvider client={queryClient}>
-          <HashRouter basename="/">
+          <HashRouter>
             <MantineProvider>
               <App />
             </MantineProvider>
