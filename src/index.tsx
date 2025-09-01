@@ -13,7 +13,7 @@ import { EnvUnsupported } from "@/components/EnvUnsupported.tsx";
 import { init } from "@/init.ts";
 // Mock the environment in case, we are outside Telegram.
 import "./mockEnv.ts";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import {
   QueryClientProvider,
   QueryClient,
@@ -96,11 +96,11 @@ try {
     root.render(
       <StrictMode>
         <QueryClientProvider client={queryClient}>
-          <HashRouter>
+          <BrowserRouter>
             <MantineProvider>
               <App />
             </MantineProvider>
-          </HashRouter>
+          </BrowserRouter>
         </QueryClientProvider>
       </StrictMode>
     );
