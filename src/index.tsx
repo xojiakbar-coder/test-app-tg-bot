@@ -99,7 +99,8 @@ try {
         <QueryClientProvider client={queryClient}>
           <HashRouter>
             <MantineProvider>
-              <Test />
+              <App />
+              {/* <Test /> */}
             </MantineProvider>
           </HashRouter>
         </QueryClientProvider>
