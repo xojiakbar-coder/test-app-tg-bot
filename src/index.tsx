@@ -13,7 +13,7 @@ import { EnvUnsupported } from "@/components/EnvUnsupported.tsx";
 import { init } from "@/init.ts";
 // Mock the environment in case, we are outside Telegram.
 import "./mockEnv.ts";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import {
   QueryClientProvider,
   QueryClient,
@@ -35,6 +35,11 @@ const showApiError = (error: any) => {
 
   data.message && console.error(data.message);
 };
+
+if (window.location.href.includes("tgWebAppData")) {
+  const cleanUrl = window.location.href.split("?")[0];
+  window.history.replaceState({}, document.title, cleanUrl);
+}
 
 const onQueryError = (error: any, query: any) => {
   if (query.options.meta?.customErrorHandling) return;
@@ -96,11 +101,11 @@ try {
     root.render(
       <StrictMode>
         <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
+          <HashRouter basename="/">
             <MantineProvider>
               <App />
             </MantineProvider>
-          </BrowserRouter>
+          </HashRouter>
         </QueryClientProvider>
       </StrictMode>
     );
