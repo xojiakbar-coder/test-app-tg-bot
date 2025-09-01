@@ -1,12 +1,11 @@
-import { type FC } from "react";
 import { Section, Cell, List } from "@telegram-apps/telegram-ui";
 
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page";
 import { Link } from "@/components/Link/Link.tsx";
 
 import styles from "./Style.module.scss";
 
-export const IndexPage: FC = () => {
+export const IndexPage = () => {
   return (
     <Page back={false}>
       <List>

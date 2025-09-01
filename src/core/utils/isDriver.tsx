@@ -16,7 +16,7 @@ export const isDriver = (): boolean => {
       storage.local.set("isDriver", "true");
     } else {
       setIsDriver(false);
-      storage.local.remove("isDriver");
+      storage.local.set("isDriver", "false");
     }
   }, [location.pathname]);
 

@@ -1,0 +1,47 @@
+.outer_container {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  gap: 20px;
+  width: 100%;
+  margin-top: 6px;
+
+  @media (max-width: 567px) {
+    gap: 8px;
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: 200px 200px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.container {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 8px;
+  border-radius: 10px;
+  border: 1px solid rgb(19, 223, 148);
+  background: linear-gradient(90deg, rgb(15, 139, 94), rgb(10, 140, 99), rgb(6, 168, 127));
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.content {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.active {
+  border: 1px solid rgb(13, 255, 223);
+  background: linear-gradient(90deg, rgb(11, 82, 56), rgb(7, 78, 56), rgb(6, 82, 63));
+}

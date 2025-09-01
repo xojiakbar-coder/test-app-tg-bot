@@ -8,12 +8,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-body {
-  background: var(--tg-theme-secondary-bg-color, white);
-  padding: 0;
-  margin: 0;
-}
-
 :root {
   --max-height: calc(100dvh - 80px);
   --full-height: 100dvh;
@@ -29,4 +23,10 @@ body {
     font-size: 12px !important;
     border: 1px solid green;
   }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #232e3c !important;
 }

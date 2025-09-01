@@ -1,0 +1,163 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  padding: 30px 24px;
+  height: max-content;
+  flex-direction: column;
+  gap: 24px;
+  min-height: var(--max-height);
+
+  @media (max-width: 768px) {
+    padding: 20px 8px;
+  }
+}
+
+.card {
+  color: #fff;
+  background-color: #343630;
+}
+
+.button {
+  width: max-content !important;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.sectionTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+:global {
+  .mantine-Modal-overlay {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+  }
+
+  .mantine-Modal-title {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .mantine-Modal-close {
+    color: #fff;
+    &:hover {
+      color: #000;
+    }
+  }
+
+  .mantine-Modal-header {
+    font-weight: bold;
+    color: #fff !important;
+    background-color: rgb(74, 75, 74) !important;
+  }
+
+  .mantine-Modal-body {
+    background-color: rgb(74, 75, 74) !important;
+  }
+
+  .mantine-Select-options {
+    color: #000 !important;
+    text-transform: capitalize;
+  }
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  padding: 30px 24px;
+  height: max-content;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  min-height: var(--max-height);
+
+  @media (max-width: 768px) {
+    padding: 20px 8px;
+  }
+}
+
+.form_title {
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  font-family: var(--font);
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: max-content;
+  gap: 20px;
+  width: 600px;
+  padding: 18px 14px;
+  border-radius: 8px;
+  background-color: #fff;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.select {
+  color: #fff;
+}
+
+.submit_button {
+  width: 100%;
+}
+
+:global {
+  .mantine-FileInput-label {
+    color: #000;
+    font-family: var(--font);
+  }
+
+  .mantine-Select-input {
+    font-family: var(--font);
+  }
+
+  .mantine-Select-label {
+    color: #000;
+  }
+}
+
+.contact_us {
+  width: max-content;
+}

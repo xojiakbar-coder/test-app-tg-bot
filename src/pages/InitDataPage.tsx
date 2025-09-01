@@ -13,7 +13,7 @@ import {
   DisplayData,
   type DisplayDataRow,
 } from "@/components/DisplayData/DisplayData.tsx";
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page";
 import SubMenu from "@/layouts/Main/components";
 import { storage } from "@/core/services";
 

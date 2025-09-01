@@ -3,13 +3,13 @@
   bottom: 0;
   z-index: 999;
   width: 100%;
-  background-color: var(--tg-theme-secondary-bg-color);
   height: 80px;
   border-top: 1px solid #2f3e51;
   display: flex;
   align-items: center;
   justify-content: space-around;
   gap: 16px;
+  background: #1e2834 !important;
 }
 
 .nav_link {
@@ -32,25 +32,22 @@
   &:focus {
     color: #fff;
     outline: none;
-    color: #32adff;
+    color: #43a9ed;
   }
 
   &.active {
     color: #fff;
-    background-color: #1092e9;
+    color: #43a9ed;
   }
 
   @media (min-width: 768px) {
     font-size: 14px;
   }
-
-  @media (max-width: 768px) {
-    width: 78px;
-  }
 }
 
 .icon {
   font-size: 20px;
+  font-weight: 100;
   user-select: none;
 
   @media (max-width: 768px) {

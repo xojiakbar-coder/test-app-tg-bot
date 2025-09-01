@@ -1,0 +1,72 @@
+.routes_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 24px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #d1d1d1;
+  }
+
+  @media (min-width: 640px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.start_location,
+.finish_location {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  span:first-child {
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  span:last-child {
+    font-size: 16px;
+    font-weight: 600;
+    word-break: break-word;
+  }
+}
+
+.start_location {
+  text-align: left;
+  width: 100%;
+  margin-top: 8px;
+
+  @media (min-width: 640px) {
+    width: auto;
+    margin-top: 0;
+  }
+}
+
+.finish_location {
+  text-align: right;
+  width: 100%;
+
+  @media (min-width: 640px) {
+    width: auto;
+  }
+}
+
+.arrow {
+  display: none;
+
+  @media (min-width: 640px) {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    color: #e4e4e7;
+  }
+}

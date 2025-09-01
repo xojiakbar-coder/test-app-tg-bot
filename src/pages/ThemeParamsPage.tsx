@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { themeParams, useSignal } from "@telegram-apps/sdk-react";
 import { List } from "@telegram-apps/telegram-ui";
 
-import { Page } from "@/components/Page.tsx";
+import { Page } from "@/components/Page/Page";
 import { DisplayData } from "@/components/DisplayData/DisplayData.tsx";
 
 export const ThemeParamsPage: FC = () => {

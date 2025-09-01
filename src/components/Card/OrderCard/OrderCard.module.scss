@@ -1,0 +1,48 @@
+.card {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  height: max-content !important;
+  transition: box-shadow 0.3s ease;
+}
+
+.top_content_wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #2b3d50;
+  font-weight: 500;
+
+  strong {
+    color: #2c3e50;
+    margin-right: 4px;
+  }
+}
+
+.driverSection {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed #666;
+
+  strong {
+    margin-bottom: 4px;
+    color: #2c3e50;
+  }
+
+  p {
+    margin-left: 10px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,47 @@
+.outer_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  margin-top: 6px;
+
+  @media (max-width: 567px) {
+    gap: 8px;
+  }
+}
+
+.container {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 40px;
+  padding: 12px 8px;
+  border-radius: 10px;
+  border: 1px solid rgb(19, 223, 148);
+  background: linear-gradient(90deg, rgb(10, 123, 82), rgb(7, 111, 78), rgb(6, 114, 87));
+}
+
+.car_photo {
+  width: 160px;
+
+  @media (max-width: 768px) {
+    width: 90px;
+  }
+}
+
+.content {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  user-select: none;
+  text-align: center;
+}
+
+.active {
+  border: 1px solid rgb(57, 248, 255);
+  background: linear-gradient(90deg, rgb(10, 88, 60), rgb(10, 90, 65), rgb(9, 90, 70));
+}

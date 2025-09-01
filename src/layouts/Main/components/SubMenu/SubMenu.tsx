@@ -8,26 +8,28 @@ const SubMenu = () => {
   const driver = isDriver();
   const location = useLocation();
 
-  useEffect(() => {}, [driver]);
+  useEffect(() => {
+    console.log(driver);
+  }, [driver]);
 
   const navItems = [
     {
-      value: !isDriver ? "/" : "/driver/new-order",
+      value: !driver ? "/" : "/driver/driver-new-ride",
       icon: Icons.IconCirclePlus,
       label: "Yangi buyurtma",
-      activePaths: ["/", "/driver/new-order"],
+      activePaths: ["/", "/driver/driver-new-ride"],
     },
     {
-      value: !isDriver ? "my-orders" : "/driver/my-orders",
+      value: !driver ? "/passenger-orders" : "/driver/driver-orders",
       icon: Icons.IconShoppingCart,
       label: "Buyurtmalarim",
-      activePaths: ["/my-orders", "/driver/my-orders"],
+      activePaths: ["/passenger-orders", "/driver/driver-orders"],
     },
     {
-      value: !isDriver ? "/profile" : "/driver",
+      value: !driver ? "/passenger-profile" : "/driver",
       icon: Icons.IconUserCircle,
       label: "Profile",
-      activePaths: ["/profile", "/driver"],
+      activePaths: ["/passenger-profile", "/driver"],
     },
   ];
 
