@@ -1,28 +1,28 @@
+import { useEffect } from "react";
+import { getUserData } from "@/helpers";
 import { useQuery } from "@tanstack/react-query";
 
 import * as Api from "../api";
 import * as Types from "../types";
 import * as Mappers from "../mappers";
-import { useEffect } from "react";
-import { useUser } from "@/common/context";
-import { storage } from "@/common/services";
+import { storage } from "@/core/services";
 
 const useDriver = () => {
-  const { user } = useUser();
+  const { userId } = getUserData();
 
   const initialData = { driver: Mappers.Driver() } as Types.IQuery.Single;
 
   const { data = initialData, ...args } = useQuery<Types.IQuery.Single, string>(
     {
-      queryKey: ["driver", "single", user?.id],
+      queryKey: ["driver", "single", userId],
       queryFn: async () => {
-        const { data } = await Api.Driver(user?.id || "");
+        const { data } = await Api.Driver(userId || "");
         return {
           driver: Mappers.Driver(data && data),
         };
       },
       initialData,
-      enabled: !!user?.id,
+      enabled: !!userId,
     }
   );
 

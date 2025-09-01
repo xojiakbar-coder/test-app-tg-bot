@@ -3,11 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Api from "../api.ts";
 import * as Types from "../types.ts";
 import * as Mappers from "../mappers.ts";
-import useUser from "@/common/context/usage.ts";
-import storage from "@/common/services/storage.ts";
+import getUserData from "@/helpers/getUserData.tsx";
 
 const useDelete = () => {
-  const { user } = useUser();
+  const { userId } = getUserData();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -15,7 +14,7 @@ const useDelete = () => {
       rideId,
     }: Types.IQuery.Delete): Promise<Types.IEntity.RecentRide> => {
       const { data } = await Api.DeleteRide({
-        telegramId: user?.id || storage.local.get("telegramUser")?.id,
+        telegramId: userId,
         rideId,
       });
       return Mappers.RecentRide(data && data);

@@ -1,19 +1,18 @@
+import { getUserData } from "@/helpers/";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import * as Api from "../api.ts";
 import * as Types from "../types.ts";
 import * as Mappers from "../mappers.ts";
-import useUser from "@/common/context/usage.ts";
-import storage from "@/common/services/storage.ts";
 
 const useCompleteRide = () => {
-  const { user } = useUser();
+  const { userId } = getUserData();
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (): Promise<Types.IEntity.RecentRide> => {
       const { data } = await Api.CompleteRide({
-        telegramId: user?.id || storage.local.get("telegramUser")?.id,
+        telegramId: userId,
       });
       return Mappers.RecentRide(data && data);
     },

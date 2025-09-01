@@ -8,8 +8,7 @@ import { useList } from "@/modules/tariff/hooks";
 import { useDriver } from "@/modules/driver/hooks";
 
 // components
-import { Badge, Group, Text } from "@mantine/core";
-import { Spacer } from "@/components/Spacer/Spacer";
+import { Badge, Group, Space, Text } from "@mantine/core";
 import SpinnerLoader from "@/components/Loader/Spinner";
 import CardNumberCopy from "@/components/CopyButton/CardNumberCopy";
 
@@ -25,14 +24,14 @@ const Form = () => {
         Tarif {driver.currentTariff != null ? "almashtirish" : "sotib olish"}
       </Text>
 
-      <Spacer size="lg" />
+      <Space h="lg" />
 
       <CardNumberCopy
         cardNumber="9860 1766 1378 8965"
         description="Tarif to'lovini ushbu kartaga o'tkazishingiz mumkin"
       />
 
-      <Spacer size="lg" />
+      <Space h="lg" />
 
       <Fields.Select
         name="selectedTariff"
@@ -45,7 +44,7 @@ const Form = () => {
         }))}
       />
 
-      <Spacer size="md" />
+      <Space h="md" />
 
       <Fields.File
         clearable
@@ -56,7 +55,7 @@ const Form = () => {
         placeholder="To'lov skrinshotni yuklash"
       />
 
-      <Spacer size="md" />
+      <Space h="md" />
 
       {items.map((tariff) => {
         return (

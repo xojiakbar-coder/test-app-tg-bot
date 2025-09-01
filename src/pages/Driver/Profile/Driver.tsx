@@ -8,17 +8,17 @@ import { IconPhoneCall, IconPlus } from "@tabler/icons-react";
 import SpinnerLoader from "@/components/Loader/Spinner";
 import useDriver from "@/modules/driver/hooks/useDriver";
 import { DrvierDataCard } from "@/components/Card/DriverDataCard";
-import { useUser } from "@/ccore/context";
 import { useEffect } from "react";
+import { getUserData } from "@/helpers";
 
 const Driver = () => {
-  const { user, isFetched: isFetchedUser } = useUser();
+  const user = getUserData();
   const navigate = useNavigate();
   const { driver, isLoading, isFetched } = useDriver();
 
   useEffect(() => {}, [user, driver]);
 
-  if (isFetchedUser && isFetched && !driver?.id) {
+  if (isFetched && !driver?.id) {
     return (
       <EmptyPage
         title={`Sizning ma'lumotlaringiz topilmadi`}
@@ -35,15 +35,15 @@ const Driver = () => {
     <div className={styles.wrapper}>
       <div className={styles.inner}>
         <div className={styles.header}>
-          {user?.photo_url && (
-            <Avatar src={user.photo_url} radius="xl" size="lg" />
+          {user?.photoUrl && (
+            <Avatar src={user.photoUrl} radius="xl" size="lg" />
           )}
-          {!user?.photo_url && (
+          {!user?.photoUrl && (
             <Avatar radius="xl" size="lg" color="indigo">
-              {user?.first_name?.charAt(0).toUpperCase()}
+              {user?.firstName?.charAt(0).toUpperCase()}
             </Avatar>
           )}
-          <h2 className={styles.name}>{user?.first_name}</h2>
+          <h2 className={styles.name}>{user?.firstName}</h2>
         </div>
 
         {isFetched && driver?.id && <DrvierDataCard data={driver} />}
