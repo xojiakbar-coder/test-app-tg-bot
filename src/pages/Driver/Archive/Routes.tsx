@@ -18,10 +18,9 @@ const DriverRoutes = () => {
   const { driver, isFetched } = useDriver();
   const { routes, isLoading } = useRoutes();
 
-  // ✅ navigate callbackni shu yerda beramiz
   const { mutate, isPending } = useCreateRide({
     onSuccess: () => {
-      navigate("/driver/my-orders");
+      navigate("/driver/driver-orders");
     },
   });
 

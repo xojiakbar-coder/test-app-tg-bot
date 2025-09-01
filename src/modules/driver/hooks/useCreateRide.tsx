@@ -1,8 +1,9 @@
-// useCreateRide.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Api from "../api";
 import * as Types from "../types";
 import * as Mappers from "../mappers";
+
+import { error as errorNotification } from "@/components/Notification";
 
 type IProps = {
   driverId: string;
@@ -31,13 +32,13 @@ const useCreateRide = (options?: { onSuccess?: () => void }) => {
     },
 
     onError: (error: any) => {
-      window.alert(
-        `${
+      errorNotification({
+        title: `${
           JSON.stringify(error?.request.response).search("no_tariff")
             ? "Sizda aktiv tarif yo'q ⚠️"
             : "Xatolik yuz berdi ❌"
-        }`
-      );
+        }`,
+      });
     },
   });
 };

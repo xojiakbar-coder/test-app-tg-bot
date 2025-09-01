@@ -10,7 +10,7 @@ import Title from "@/components/PageTitle/Title";
 import SpinnerLoader from "@/components/Loader/Spinner";
 import DriverRideCard from "@/components/Card/DriverRideCard/DriverRideCard";
 
-const MyOrders = () => {
+const DriverRides = () => {
   const { mutate } = useDeleteRide();
   const { driver, isLoading, isFetched } = useDriver();
 
@@ -54,4 +54,4 @@ const MyOrders = () => {
   );
 };
 
-export default MyOrders;
+export default DriverRides;

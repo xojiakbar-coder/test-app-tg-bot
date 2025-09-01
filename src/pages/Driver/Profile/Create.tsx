@@ -1,35 +1,32 @@
-import { IconCheck } from '@tabler/icons-react';
-import { Button } from '@/components/Button';
-import { notifications } from '@mantine/notifications';
+import { Button } from "@/components/Button";
 
-import styles from './Driver.module.scss';
+import styles from "./Driver.module.scss";
 
-import Form from './components/Form';
-import CreateForm from '@/modules/driver/forms/Create';
+import Form from "./components/Form";
+import CreateForm from "@/modules/driver/forms/Create";
+import { success } from "@/components/Notification";
 
-const Create = () => {
+const DriverChangeTariff = () => {
   return (
     <div className={styles.container}>
       <div className={styles.formWrapper}>
         <CreateForm
           onSuccess={() => {
-            notifications.show({
-              color: 'teal',
-              loading: false,
-              autoClose: 2000,
-              icon: <IconCheck />,
-              position: 'top-center',
-              title: "Tarifini yangilash uchun so'rov yuborildi !",
-              message: null
-            });
+            success({ title: "Tarifini yangilash uchun so'rov yuborildi !" });
           }}
         >
           {({ isLoading }) => {
             return (
               <>
                 <Form />
-                <Button type="submit" variant="filled" h={46} disabled={isLoading} className={styles.submit_button}>
-                  {isLoading ? 'Yuborilmoqda...' : 'Yuborish'}
+                <Button
+                  type="submit"
+                  variant="filled"
+                  h={46}
+                  disabled={isLoading}
+                  className={styles.submit_button}
+                >
+                  {isLoading ? "Yuborilmoqda..." : "Yuborish"}
                 </Button>
               </>
             );
@@ -40,4 +37,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default DriverChangeTariff;

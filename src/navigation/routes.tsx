@@ -2,13 +2,16 @@ import Layout from "@/layouts";
 import * as RouterDom from "react-router-dom";
 
 import { InitDataPage } from "@/pages/InitDataPage";
-import { IndexPage } from "@/pages/IndexPage/IndexPage";
 
 // passenger pages
 import NewOrder from "@/pages/Passenger/NewOrder/NewOrder";
 import PassengerRoutes from "@/pages/Passenger/Routes/Routes";
 import PassengerOrders from "@/pages/Passenger/Orders/Orders";
 import PassengerProfile from "@/pages/Passenger/Profile/Profile";
+import Driver from "@/pages/Driver/Profile/Driver";
+import DriverRoutes from "@/pages/Driver/Archive/Routes";
+import DriverRides from "@/pages/Driver/Rides/Rieds";
+import DriverChangeTariff from "@/pages/Driver/Profile/Create";
 
 export const routes: RouterDom.RouteObject[] = [
   {
@@ -26,14 +29,11 @@ export const routes: RouterDom.RouteObject[] = [
     path: "/driver",
     Component: Layout,
     children: [
-      { index: true, element: <IndexPage /> },
-      { path: "/driver/driver-orders", element: <InitDataPage /> },
-      { path: "/driver/driver-new-ride", element: <InitDataPage /> },
+      { index: true, element: <Driver /> },
+      { path: "/driver/driver-orders", element: <DriverRides /> },
+      { path: "/driver/driver-new-ride", element: <DriverRoutes /> },
+      { path: "/driver/change-tariff", element: <DriverChangeTariff /> },
       { path: "/driver/driver-rides-archive", element: <InitDataPage /> },
     ],
-  },
-  {
-    path: "*",
-    element: <RouterDom.Navigate to="/" />,
   },
 ];

@@ -46,7 +46,7 @@ const Create: React.FC<IProps> = ({
     },
     onSuccess: (data: Types.IEntity.Order) => {
       onSuccess && onSuccess(data);
-      navigate("/my-orders");
+      navigate("/driver/driver-orders");
       queryClient.invalidateQueries({
         predicate: (query) =>
           query.queryKey[0] === "routes" && query.queryKey[1] === "list",
