@@ -1,8 +1,8 @@
 import styles from "./CardNumberCopy.module.scss";
 
+import { message } from "@/components/Message";
 import { IconCopy, IconCheck } from "@tabler/icons-react";
 import { CopyButton, ActionIcon, Tooltip } from "@mantine/core";
-import { success } from "../Notification";
 
 const CardNumberCopy = ({
   cardNumber,
@@ -26,7 +26,7 @@ const CardNumberCopy = ({
               <ActionIcon
                 onClick={() => {
                   copy();
-                  success({ title: "Karta raqami nusxalandi!" });
+                  message.success("Karta raqami nusxalandi!");
                 }}
                 variant="gradient"
                 gradient={{ from: "indigo", to: "violet", deg: 90 }}

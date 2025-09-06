@@ -34,7 +34,6 @@ const Create: React.FC<IProps> = ({
   className,
 }) => {
   const { userId } = getUserData();
-  console.log(userId);
   const { id } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -46,7 +45,7 @@ const Create: React.FC<IProps> = ({
     },
     onSuccess: (data: Types.IEntity.Order) => {
       onSuccess && onSuccess(data);
-      navigate("/driver/driver-orders");
+      navigate("/passenger-orders");
       queryClient.invalidateQueries({
         predicate: (query) =>
           query.queryKey[0] === "routes" && query.queryKey[1] === "list",

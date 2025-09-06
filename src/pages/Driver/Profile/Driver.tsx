@@ -1,5 +1,5 @@
 import styles from "./Driver.module.scss";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Avatar } from "@mantine/core";
 import EmptyPage from "@/components/EmptyPage";
@@ -8,20 +8,12 @@ import { IconPhoneCall, IconPlus } from "@tabler/icons-react";
 import SpinnerLoader from "@/components/Loader/Spinner";
 import useDriver from "@/modules/driver/hooks/useDriver";
 import { DrvierDataCard } from "@/components/Card/DriverDataCard";
-import { useEffect } from "react";
 import { getUserData } from "@/helpers";
 
 const Driver = () => {
   const user = getUserData();
-  const location = useLocation();
   const navigate = useNavigate();
   const { driver, isLoading, isFetched } = useDriver();
-
-  useEffect(() => {
-    console.log("pathname:", location.pathname);
-    console.log("search (query):", location.search);
-    console.log("hash:", location.hash);
-  }, [user, driver]);
 
   if (isFetched && !driver?.id) {
     return (
@@ -72,7 +64,7 @@ const Driver = () => {
             h={44}
             className={styles.button}
             leftSection={<IconPlus size={20} />}
-            onClick={() => navigate("/driver/change-tariff")}
+            onClick={() => navigate("driver-driver-change-tariff")}
             gradient={{ from: "indigo", to: "violet", deg: 90 }}
           >
             {driver?.currentTariff

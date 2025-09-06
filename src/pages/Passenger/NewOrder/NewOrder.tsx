@@ -4,17 +4,28 @@ import { Button } from "@/components/Button";
 import styles from "./NewOrder.module.scss";
 import Title from "@/components/PageTitle/Title";
 
+import { useEffect } from "react";
+import { message } from "@/components/Message";
 import CreateForm from "@/modules/order/forms/Create";
-import { success } from "@/components/Notification";
+import { backButton, useSignal, mainButton } from "@telegram-apps/sdk-react";
 
 const NewOrder = () => {
+  const isVisible = useSignal(backButton.isVisible);
+
+  useEffect(() => {}, [isVisible]);
+
+  useEffect(() => {
+    mainButton.text();
+    return () => {
+      backButton.hide();
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <Title>Buyurtma berish</Title>
       <CreateForm
-        onSuccess={() =>
-          success({ title: "Buyurtma muvaffaqiyatli yaratildi!" })
-        }
+        onSuccess={() => message.success("Buyurtma muvaffaqiyatli yaratildi.")}
       >
         {({ isLoading }) => {
           return (

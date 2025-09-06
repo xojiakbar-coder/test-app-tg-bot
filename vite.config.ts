@@ -6,7 +6,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/test-app-tg-bot",
+  base: "/",
   css: {
     preprocessorOptions: {
       scss: {

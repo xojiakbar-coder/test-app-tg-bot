@@ -1,33 +1,38 @@
-import { useEffect } from "react";
-import { isDriver } from "@/core/utils";
 import styles from "./SubMenu.module.scss";
 import * as Icons from "@tabler/icons-react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useDriverCheck } from "@/modules/driver/hooks";
 
 const SubMenu = () => {
-  const driver = isDriver();
   const location = useLocation();
-
-  useEffect(() => {}, [driver]);
+  const {
+    data: { isDriver },
+  } = useDriverCheck();
 
   const navItems = [
     {
-      value: !driver ? "/" : "/driver/driver-new-ride",
+      value: !isDriver ? "/" : "/driver-new-ride",
       icon: Icons.IconCirclePlus,
-      label: "Yangi buyurtma",
-      activePaths: ["/", "/driver/driver-new-ride"],
+      label: "Yangi safar",
+      activePaths: ["/", "/driver-new-ride"],
     },
     {
-      value: !driver ? "/passenger-orders" : "/driver/driver-orders",
-      icon: Icons.IconShoppingCart,
-      label: "Buyurtmalarim",
-      activePaths: ["/passenger-orders", "/driver/driver-orders"],
+      value: !isDriver ? "/passenger-orders" : "/driver-rides",
+      icon: Icons.IconCar,
+      label: "Safarlarim",
+      activePaths: ["/passenger-orders", "/driver-rides"],
     },
     {
-      value: !driver ? "/passenger-profile" : "/driver",
+      value: !isDriver ? "/passenger-archive" : "/driver-rides-archive",
+      icon: Icons.IconArchive,
+      label: "Archive",
+      activePaths: ["/passenger-archive", "/driver-rides-archive"],
+    },
+    {
+      value: !isDriver ? "/passenger-profile" : "/driver-profile",
       icon: Icons.IconUserCircle,
       label: "Profile",
-      activePaths: ["/passenger-profile", "/driver"],
+      activePaths: ["/passenger-profile", "/driver-profile"],
     },
   ];
 

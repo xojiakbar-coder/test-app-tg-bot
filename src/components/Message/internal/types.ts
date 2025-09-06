@@ -6,7 +6,7 @@ export declare namespace IUse {
   type Id = NonNullable<NotificationData['id']>;
   type Message = NonNullable<NotificationData['message']>;
 
-  export interface IProps extends NotificationsProps {
+  export interface INotification extends NotificationsProps {
     id?: Id;
     icon?: boolean;
     message?: Message;
@@ -15,4 +15,7 @@ export declare namespace IUse {
     containerWidth?: string | number;
     classNames?: Partial<NotificationData['classNames']>;
   }
+
+  export type SingleProps = string;
+  export type IProps = { values: INotification };
 }

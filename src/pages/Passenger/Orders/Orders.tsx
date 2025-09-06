@@ -5,6 +5,7 @@ import EmptyPage from "@/components/EmptyPage";
 import SpinnerLoader from "@/components/Loader/Spinner";
 import { OrderCard } from "@/components/Card/OrderCard";
 import Title from "@/components/PageTitle/Title";
+import Page from "@/components/Page";
 
 const PassengerOrders = () => {
   const { items, isLoading, isSuccess, isFetched } = useList();
@@ -13,13 +14,7 @@ const PassengerOrders = () => {
   if (isLoading && isFetched) return <SpinnerLoader />;
 
   if (!isLoading && items.length === 0)
-    return (
-      <EmptyPage
-        internalLink="/"
-        title="Hozircha buyurtmalar yo‘q"
-        buttonContent="Yangi buyurtma berish"
-      />
-    );
+    return <EmptyPage internalLink="/" title="Hozircha safarlar yo‘q" />;
 
   return (
     <div className={styles.container}>

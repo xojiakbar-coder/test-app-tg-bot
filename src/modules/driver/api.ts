@@ -9,6 +9,13 @@ export const Driver = (id: string): AxiosPromise<Types.IApi.Single.Response> =>
     telegram_id: id,
   });
 
+export const DriverCheck = (
+  id: string
+): AxiosPromise<Types.IApi.DriverCheck.Response> =>
+  http.request.post("/driver/check/", {
+    telegram_id: id,
+  });
+
 // Create ride
 export const CreateRide = ({
   driverId,

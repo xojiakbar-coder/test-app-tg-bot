@@ -8,6 +8,7 @@ import type { TablerIcon } from "@tabler/icons-react";
 
 interface IProps {
   title: string;
+  hasIcon?: boolean;
   icon?: TablerIcon;
   subtitle?: string;
   fullHeight?: boolean;
@@ -19,8 +20,9 @@ interface IProps {
 
 const EmptyPage: React.FC<IProps> = ({
   title,
-  icon: Icon,
   subtitle,
+  icon: Icon,
+  hasIcon = true,
   externalLink = "",
   internalLink = "",
   fullHeight = false,
@@ -31,11 +33,13 @@ const EmptyPage: React.FC<IProps> = ({
 
   return (
     <div className={`${styles.empty_page} ${fullHeight && styles.full_height}`}>
-      {Icon ? (
-        <Icon className={styles.icon} />
-      ) : (
-        <IconInbox className={styles.icon} />
-      )}
+      {hasIcon &&
+        (Icon ? (
+          <Icon className={styles.icon} />
+        ) : (
+          <IconInbox className={styles.icon} />
+        ))}
+
       <Text size="lg" className={styles.title}>
         {title}
       </Text>
@@ -44,6 +48,7 @@ const EmptyPage: React.FC<IProps> = ({
           {subtitle}
         </Text>
       )}
+
       {buttonContent && !externalLink && !internalLink && (
         <Button
           variant="primary"

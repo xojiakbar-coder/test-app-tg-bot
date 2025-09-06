@@ -1,13 +1,7 @@
 import styles from "./DataCard.module.scss";
 import * as Types from "@/modules/passenger/types";
 
-import {
-  IconBone,
-  IconTag,
-  IconCheck,
-  IconCopy,
-  IconPhone,
-} from "@tabler/icons-react";
+import * as Icons from "@tabler/icons-react";
 import { ActionIcon, Box, CopyButton, Flex, Stack, Text } from "@mantine/core";
 
 const DataCard = ({ data }: { data: Types.IEntity.Passenger }) => {
@@ -17,7 +11,11 @@ const DataCard = ({ data }: { data: Types.IEntity.Passenger }) => {
         <Stack gap={8}>
           <div className={styles.header}>
             <Box className={`${styles.icon_wrapper} ${styles["blue"]}`}>
-              <IconPhone className={styles.icon} color={"blue"} size={20} />
+              <Icons.IconPhone
+                className={styles.icon}
+                color={"blue"}
+                size={20}
+              />
             </Box>
             <Text size="xs" className={styles.title}>
               Telefon raqam
@@ -33,7 +31,11 @@ const DataCard = ({ data }: { data: Types.IEntity.Passenger }) => {
         <Stack gap={8}>
           <div className={styles.header}>
             <Box className={`${styles.icon_wrapper} ${styles["green"]}`}>
-              <IconBone className={styles.icon} color={"green"} size={20} />
+              <Icons.IconCurrencyDollar
+                size={20}
+                color={"green"}
+                className={styles.icon}
+              />
             </Box>
             <Text size="xs" className={styles.title}>
               Cashback miqdori
@@ -49,7 +51,11 @@ const DataCard = ({ data }: { data: Types.IEntity.Passenger }) => {
         <Stack gap={8}>
           <div className={styles.header}>
             <Box className={`${styles.icon_wrapper} ${styles["pink"]}`}>
-              <IconTag className={styles.icon} color={"#9c36b5"} size={20} />
+              <Icons.IconTag
+                size={20}
+                color={"#9c36b5"}
+                className={styles.icon}
+              />
             </Box>
             <Text size="xs" className={styles.title}>
               Shaxsiy promokod
@@ -60,8 +66,16 @@ const DataCard = ({ data }: { data: Types.IEntity.Passenger }) => {
 
             <CopyButton value={data.promoCode}>
               {({ copied, copy }) => (
-                <ActionIcon color={copied ? "teal" : "gray"} onClick={copy}>
-                  {copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
+                <ActionIcon
+                  color={copied ? "teal" : "gray"}
+                  onClick={copy}
+                  classNames={{ root: styles.copy_button }}
+                >
+                  {copied ? (
+                    <Icons.IconCheck size={16} />
+                  ) : (
+                    <Icons.IconCopy size={16} />
+                  )}
                 </ActionIcon>
               )}
             </CopyButton>

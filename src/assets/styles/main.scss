@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import "./base/theme.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  @include theme-light;
+
+  // height variables
+  --full-height: 100dvh;
+  --max-height: calc(100dvh - 80px);
+}
+
+::selection {
+  color: #fff;
+  background-color: #1bacfb;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f9ffe9 !important;
+}

@@ -1,8 +1,15 @@
-import clsx from 'clsx';
-import styles from './RoutesCard.module.scss';
-import * as Types from '@/modules/routes/types';
+import clsx from "clsx";
+import styles from "./RoutesCard.module.scss";
+import * as Types from "@/modules/routes/types";
 
-const RoutesCard = ({ start, finish, onClick, className = '' }: Types.IEntity.RoutesCardProps) => {
+import * as Icons from "@tabler/icons-react";
+
+const RoutesCard = ({
+  start,
+  finish,
+  onClick,
+  className = "",
+}: Types.IEntity.RoutesCardProps) => {
   return (
     <div onClick={onClick} className={clsx(styles.routes_card, className)}>
       {/* Start Location */}
@@ -12,7 +19,9 @@ const RoutesCard = ({ start, finish, onClick, className = '' }: Types.IEntity.Ro
       </div>
 
       {/* Arrow */}
-      <div className={styles.arrow}>→</div>
+      <div className={styles.arrow}>
+        <Icons.IconArrowNarrowRight />
+      </div>
 
       {/* Finish Location */}
       <div className={styles.finish_location}>

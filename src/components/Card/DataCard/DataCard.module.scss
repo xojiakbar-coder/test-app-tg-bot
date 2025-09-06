@@ -1,6 +1,6 @@
 .outer_container {
   display: grid;
-  background-color: #edf1f7;
+  // background-color: #fefeff1f;
   grid-template-columns: 1fr 1fr;
   border-radius: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -11,9 +11,8 @@
 }
 
 .divider {
-  width: 95%;
-  margin: 5px auto;
-  border-bottom: 1px solid #d3d5d6;
+  width: 100%;
+  margin: 3px auto;
 
   @media (min-width: 768px) {
     display: none;
@@ -21,12 +20,14 @@
 }
 
 .card {
-  padding: 8px 12px;
   display: flex;
-  border-radius: 5px;
+  padding: 8px 12px;
+  border-radius: 8px;
   flex-direction: column;
   justify-content: center;
-  background: #edf1f7;
+  border: 1px solid #e6e6e6;
+  background-color: #f8f8f8ef !important;
+  backdrop-filter: blur(10px);
 }
 
 .header {
@@ -39,24 +40,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 10px;
+  padding: 4px 6px;
   border-radius: 4px;
   border-width: 1px;
   border-style: solid;
 
   &.blue {
-    background-color: #d0ebff;
+    background-color: #bfe3ff;
     border-color: #98cffa;
   }
 
   &.green {
     background-color: #d3f9d8;
     border-color: #98fc9e;
-  }
-
-  &.orange {
-    background-color: #ffe8cc;
-    border-color: #ffd29a;
   }
 
   &.pink {
@@ -66,10 +62,10 @@
 }
 
 .icon {
-  font-size: 20px;
+  width: 22px;
 
   @media (max-width: 768px) {
-    font-size: 14px;
+    width: 18px;
   }
 }
 
@@ -86,7 +82,7 @@
 
 .value {
   color: #000;
-  margin-top: 6px;
+  margin-top: 4px;
   font-size: 16px;
   font-weight: 500;
 
@@ -96,7 +92,19 @@
 }
 
 .promocode_copy {
-  padding: 3px 4px;
-  border-radius: 3px;
-  border-bottom: 1px solid rgba(14, 116, 199, 0.342);
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(180, 180, 180, 0.342);
+}
+
+.copy_button {
+  border-radius: 6px;
+  color: var(--black-white-dark);
+  border: 1px solid #dededeff !important;
+  background-color: #f8f8f848 !important;
+
+  &:hover {
+    color: var(--black-white-dark);
+    background-color: #f8f8f848 !important;
+  }
 }

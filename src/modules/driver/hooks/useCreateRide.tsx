@@ -3,7 +3,8 @@ import * as Api from "../api";
 import * as Types from "../types";
 import * as Mappers from "../mappers";
 
-import { error as errorNotification } from "@/components/Notification";
+import { message } from "@/components/Message";
+import { useNavigate } from "react-router-dom";
 
 type IProps = {
   driverId: string;
@@ -11,6 +12,7 @@ type IProps = {
 };
 
 const useCreateRide = (options?: { onSuccess?: () => void }) => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   return useMutation<Types.IQuery.Single, string, IProps>({
@@ -22,7 +24,8 @@ const useCreateRide = (options?: { onSuccess?: () => void }) => {
     },
 
     onSuccess: (_, variables) => {
-      console.log("✅ Navbat muvaffaqiyatli qo‘shildi");
+      message.success("✅ Safar navbatga muvaffaqiyatli qo‘shildi");
+      navigate("driver-rides");
 
       queryClient.invalidateQueries({
         queryKey: ["driver", "single", variables.driverId],
@@ -32,13 +35,13 @@ const useCreateRide = (options?: { onSuccess?: () => void }) => {
     },
 
     onError: (error: any) => {
-      errorNotification({
-        title: `${
+      message.error(
+        `${
           JSON.stringify(error?.request.response).search("no_tariff")
             ? "Sizda aktiv tarif yo'q ⚠️"
-            : "Xatolik yuz berdi ❌"
-        }`,
-      });
+            : "Xatolik yuz berdi qayta urinib ko'ring ❌"
+        }`
+      );
     },
   });
 };

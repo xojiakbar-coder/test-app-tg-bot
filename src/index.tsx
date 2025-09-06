@@ -1,8 +1,9 @@
 // Include Telegram UI styles first to allow our code override the package CSS.
 import "@telegram-apps/telegram-ui/dist/styles.css";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import "@mantine/dates/styles.css";
-import "./index.css";
+import "@/assets/styles/main.scss";
 
 import ReactDOM from "react-dom/client";
 import { StrictMode } from "react";
@@ -13,7 +14,7 @@ import { EnvUnsupported } from "@/components/EnvUnsupported.tsx";
 import { init } from "@/init.ts";
 // Mock the environment in case, we are outside Telegram.
 import "./mockEnv.ts";
-import { HashRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 import {
   QueryClientProvider,
   QueryClient,
@@ -22,7 +23,7 @@ import {
 } from "@tanstack/react-query";
 import { MantineProvider } from "@mantine/core";
 import getApiError from "./core/utils/getApiError.ts";
-import Test from "./Test.tsx";
+import { Notifications } from "@mantine/notifications";
 
 const showApiError = (error: any) => {
   const data = getApiError(error);
@@ -97,13 +98,12 @@ try {
     root.render(
       <StrictMode>
         <QueryClientProvider client={queryClient}>
-          <HashRouter>
-            <MantineProvider>
-              <App />
-              {/* <Test /> */}
-            </MantineProvider>
-          </HashRouter>
+          <MantineProvider>
+            <Notifications />
+            <App />
+          </MantineProvider>
         </QueryClientProvider>
+        {/* <BrowserRouter></BrowserRouter> */}
       </StrictMode>
     );
   });

@@ -79,6 +79,16 @@ export const Driver = (src?: any): Types.IEntity.Driver => ({
   recentRides: (get(src, "recent_rides", []) as any[]).map(RecentRide),
 });
 
+export const DriverCheck = (src?: any): Types.IEntity.DriverCheck => ({
+  telegramId: get(src, "telegram_id", ""),
+  isPassenger: get(src, "is_passenger", false),
+  isDriver: get(src, "is_driver", false),
+  driverId: get(src, "driver_id", 0),
+  passengerId: get(src, "passenger_id", 0),
+  role: get(src, "role", "passenger"),
+  driverIsActive: get(src, "driver_is_active", false),
+});
+
 export const SelectedTariff = (src?: any): Types.IEntity.SelectedTariff => ({
   id: get(src, "id", 0),
   name: get(src, "name", ""),

@@ -4,7 +4,7 @@ import styles from "./Driver.module.scss";
 
 import Form from "./components/Form";
 import CreateForm from "@/modules/driver/forms/Create";
-import { success } from "@/components/Notification";
+import { message } from "@/components/Message";
 
 const DriverChangeTariff = () => {
   return (
@@ -12,7 +12,7 @@ const DriverChangeTariff = () => {
       <div className={styles.formWrapper}>
         <CreateForm
           onSuccess={() => {
-            success({ title: "Tarifini yangilash uchun so'rov yuborildi !" });
+            message.success("Tarifini yangilash uchun so'rov yuborildi !");
           }}
         >
           {({ isLoading }) => {

@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { routes } from "@/navigation/routes.tsx";
+import { Suspense, useMemo } from "react";
+import Root from "@/router";
 import { AppRoot } from "@telegram-apps/telegram-ui";
 import { ErrorBoundary } from "@/components/ErrorBoundary.tsx";
 
@@ -26,8 +26,7 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
 export function App() {
   const lp = useMemo(() => TelegramAppSdk.retrieveLaunchParams(), []);
   const isDark = TelegramAppSdk.useSignal(TelegramAppSdk.isMiniAppDark);
-  const element = RouterDom.useRoutes(routes);
-
+  const router = RouterDom.createBrowserRouter(Root());
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
       <AppRoot
@@ -36,7 +35,9 @@ export function App() {
           ["macos", "ios"].includes(lp.tgWebAppPlatform) ? "ios" : "base"
         }
       >
-        {element}
+        <Suspense fallback={<div>Loading...</div>}>
+          <RouterDom.RouterProvider router={router} />
+        </Suspense>
       </AppRoot>
     </ErrorBoundary>
   );

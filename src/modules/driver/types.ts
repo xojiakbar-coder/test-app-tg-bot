@@ -7,6 +7,11 @@ export declare namespace IApi {
       data: IEntity.Driver;
     }
   }
+  export namespace DriverCheck {
+    export interface Response {
+      data: IEntity.DriverCheck;
+    }
+  }
 }
 
 export declare namespace IEntity {
@@ -107,6 +112,16 @@ export declare namespace IEntity {
     recentRides: RecentRide[] | [];
   }
 
+  export interface DriverCheck {
+    telegramId: string;
+    isPassenger: boolean;
+    isDriver: boolean;
+    driverId: number;
+    passengerId: number;
+    role: "passenger" | "driver" | "none";
+    driverIsActive: boolean;
+  }
+
   export interface Tariff {
     id: number;
     name: string;
@@ -126,6 +141,10 @@ export declare namespace IQuery {
 
   export interface Single {
     driver: IEntity.Driver;
+  }
+
+  export interface DriverCheck {
+    data: IEntity.DriverCheck;
   }
 
   export interface Delete {

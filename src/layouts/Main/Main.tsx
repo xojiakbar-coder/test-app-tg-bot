@@ -7,17 +7,19 @@ import * as TelegramAppSdk from "@telegram-apps/sdk-react";
 import styles from "./Main.module.scss";
 
 // components
-import Page from "@/components/Page";
 import SubMenu from "./components/SubMenu";
 import * as TelegramUi from "@telegram-apps/telegram-ui";
 
 import { storage } from "@/core/services";
+import { useDriverCheck } from "@/modules/driver/hooks";
+import SpinnerLoader from "@/components/Loader/Spinner";
 
 function getUserRows(user: TelegramAppSdk.User): DisplayDataRow[] {
   return Object.entries(user).map(([title, value]) => ({ title, value }));
 }
 
 const Main = () => {
+  const { data, isFetched } = useDriverCheck();
   const initDataRaw = TelegramAppSdk.useSignal(TelegramAppSdk.initDataRaw);
   const initDataState = TelegramAppSdk.useSignal(TelegramAppSdk.initDataState);
 
@@ -62,26 +64,41 @@ const Main = () => {
   //       }));
   // }, [initDataState]);
 
-  if (!initDataRows) {
+  if (!initDataRows || !userRows) {
     return (
-      <Page>
-        <TelegramUi.Placeholder
-          header="Oops"
-          description="Application was launched with missing init data"
-        >
-          <img
-            alt="Telegram sticker"
-            src="https://xelene.me/telegram.gif"
-            style={{ display: "block", width: "144px", height: "144px" }}
-          />
-        </TelegramUi.Placeholder>
-      </Page>
+      <TelegramUi.Placeholder
+        header="Oops"
+        description={`Application was launched with missing init data. \nThe data: ${JSON.stringify(
+          initDataState
+        )} user: ${userRows}`}
+      >
+        <img
+          alt="Telegram sticker"
+          src="https://xelene.me/telegram.gif"
+          style={{ display: "block", width: "144px", height: "144px" }}
+        />
+      </TelegramUi.Placeholder>
     );
   }
 
   useEffect(() => {
     if (userRows) storage.local.set("user", JSON.stringify(initDataState));
   }, [initDataState, userRows]);
+
+  // this if case is for testing
+  // if (isFetched) {
+  //   window.alert(
+  //     `Is it driver: ${JSON.stringify(
+  //       data.isDriver
+  //     )} Is it passenger: ${JSON.stringify(data.isPassenger)} ${JSON.stringify(
+  //       data
+  //     )}`
+  //   );
+  // }
+
+  if (!isFetched) {
+    return <SpinnerLoader />;
+  }
 
   return (
     <div className={styles.layout}>

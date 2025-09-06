@@ -1,29 +1,21 @@
 import { useState } from "react";
 import styles from "./Routes.module.scss";
-import { useNavigate } from "react-router-dom";
 import { useRoutes } from "@/modules/routes/hooks";
 import { useCreateRide, useDriver } from "@/modules/driver/hooks";
 
 import { Button } from "@/components/Button";
 import EmptyPage from "@/components/EmptyPage";
 import Title from "@/components/PageTitle/Title";
-import SpinnerLoader from "@/components/Loader/Spinner";
-import { IconInfoCircle, IconNavigation } from "@tabler/icons-react";
 import RoutesCard from "@/components/Card/RoutesCard/RoutesCard";
+import { IconInfoCircle, IconNavigation } from "@tabler/icons-react";
 
 const DriverRoutes = () => {
-  const navigate = useNavigate();
   const [selectedItem, setSelectItem] = useState<number | null>(null);
 
   const { driver, isFetched } = useDriver();
-  const { routes, isLoading } = useRoutes();
+  const { routes } = useRoutes();
 
-  // ✅ navigate callbackni shu yerda beramiz
-  const { mutate, isPending } = useCreateRide({
-    onSuccess: () => {
-      navigate("/driver/my-orders");
-    },
-  });
+  const { mutate, isPending } = useCreateRide();
 
   const activeRide = driver?.recentRides.find(
     (item) => item.isCompleted === false
@@ -46,8 +38,6 @@ const DriverRoutes = () => {
       />
     );
   }
-
-  if (isLoading || !isFetched) return <SpinnerLoader />;
 
   return (
     <div className={styles.container}>

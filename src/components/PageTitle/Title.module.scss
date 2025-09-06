@@ -1,8 +1,11 @@
 .title {
+  padding: 0;
   font-size: 18px;
   font-weight: 600;
+  user-select: none;
   text-align: center;
   font-family: var(--font);
+  color: rgb(45, 45, 45);
 
   @media (min-width: 768px) {
     font-size: 20px;
