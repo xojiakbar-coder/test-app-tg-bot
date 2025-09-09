@@ -2,8 +2,8 @@ import styles from "../NewOrder.module.scss";
 
 import * as Fields from "@/containers/Fields";
 
-import { PaymentCard } from "@/components/Card/PaymentCard";
-import { CarTypeCard } from "@/components/Card/CarTypeCard";
+import { PaymentCard } from "@/components/Cards/PaymentCard";
+import { CarTypeCard } from "@/components/Cards/CarTypeCard";
 import { Space } from "@mantine/core";
 
 const Form = () => {

@@ -5,12 +5,12 @@ import styles from "./Spinner.module.scss";
 
 interface IProps {}
 
-const SpinnerLoader: React.FC<IProps> = () => {
+const Spinner: React.FC<IProps> = () => {
   return (
     <div className={styles.spinnerWrapper}>
-      <Loader color="var(--tg-theme-accent-text-color)" />
+      <Loader color="var(--main-yellow)" type="oval" />
     </div>
   );
 };
 
-export default SpinnerLoader;
+export default Spinner;

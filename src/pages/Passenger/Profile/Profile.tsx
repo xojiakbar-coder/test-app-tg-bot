@@ -3,14 +3,14 @@ import styles from "./Profile.module.scss";
 import { Avatar } from "@mantine/core";
 import { Button } from "@/components/Button";
 
-import { DataCard } from "@/components/Card/DataCard";
-import SpinnerLoader from "@/components/Loader/Spinner";
+import { DataCard } from "@/components/Cards/DataCard";
+import SpinnerLoader from "@/components/Spinner/Spinner";
 
 import { usePassenger } from "@/modules/passenger/hooks";
-import { getUserData } from "@/helpers";
+import { storage } from "@/core/services";
 
 const PassengerProfile = () => {
-  const { photoUrl } = getUserData();
+  const { photoUrl } = storage.local.get("user");
   const { data, isLoading } = usePassenger();
 
   if (isLoading) return <SpinnerLoader />;

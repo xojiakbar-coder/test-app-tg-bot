@@ -1,6 +1,3 @@
-// styles
-import styles from "../Driver.module.scss";
-
 import * as Fields from "@/containers/Fields";
 
 // hooks
@@ -8,15 +5,18 @@ import { useList } from "@/modules/tariff/hooks";
 import { useDriver } from "@/modules/driver/hooks";
 
 // components
+import { Spinner } from "@/components/Spinner";
 import { Badge, Group, Space, Text } from "@mantine/core";
-import SpinnerLoader from "@/components/Loader/Spinner";
 import CardNumberCopy from "@/components/CopyButton/CardNumberCopy";
+
+// styles
+import styles from "../Driver.module.scss";
 
 const Form = () => {
   const { driver } = useDriver();
-  const { items, isLoading, isSuccess } = useList();
+  const { items, isFetched } = useList();
 
-  if (isLoading && !isSuccess) return <SpinnerLoader />;
+  if (!isFetched) return <Spinner />;
 
   return (
     <>

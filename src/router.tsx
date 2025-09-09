@@ -1,97 +1,74 @@
-import Main from "@/layouts/Main//Main";
-import type { RouteObject } from "react-router-dom";
-import { useDriverCheck } from "@/modules/driver/hooks";
-import DriverRoutes from "@/pages/Driver/Routes/Routes";
-import { PassengerRoutes } from "@/pages/Passenger/Routes/Routes";
+import Layout from "@/layouts/Main/Main";
+import { storage } from "./core/services";
+import { useRoutes, type RouteObject } from "react-router-dom";
+
+// Passenger pages
+import PassengerOrders from "@/pages/Passenger/Orders/Orders";
+import PassengerRoutes from "@/pages/Passenger/Routes/Routes";
+import PassengerProfile from "@/pages/Passenger/Profile/Profile";
+import PassengerArchive from "@/pages/Passenger/Archive/Archive";
+import PassengerNewOrder from "@/pages/Passenger/NewOrder/NewOrder";
+
+// Driver pages
+import DriverRides from "@/pages/Driver/Rides/Rieds";
+import DriverRoutes from "./pages/Driver/Routes/Routes";
+import DriverProfile from "@/pages/Driver/Profile/Driver";
+import DriverArchive from "@/pages/Driver/Archive/Archive";
+import DriverChangeTariff from "@/pages/Driver/Profile/Create";
 
 const Root = () => {
-  const {
-    data: { role, isPassenger, isDriver },
-  } = useDriverCheck();
+  const isDriver = storage.local.get("isDriver") === "true";
 
-  const MainPage =
-    isPassenger && !isDriver ? <PassengerRoutes /> : <DriverRoutes />;
-
-  return [
+  const routes: RouteObject[] = [
     {
       path: "/",
-      Component: Main,
+      Component: Layout,
       children: [
         {
           index: true,
-          element: role === "none" ? <h1>Register</h1> : MainPage,
+          element: isDriver ? <DriverRoutes /> : <PassengerRoutes />,
         },
 
         // passenger side
         {
           path: "/passenger-profile",
-
-          async lazy() {
-            const mod = await import("@/pages/Passenger/Profile/Profile");
-            return { Component: mod.default };
-          },
+          element: <PassengerProfile />,
         },
         {
           path: "/passenger-orders",
-          async lazy() {
-            const mod = await import("@/pages/Passenger/Orders/Orders");
-            return { Component: mod.default };
-          },
+          element: <PassengerOrders />,
         },
         {
           path: "/passenger-new-order/:id",
-          async lazy() {
-            const mod = await import("@/pages/Passenger/NewOrder/NewOrder");
-            return { Component: mod.default };
-          },
+          element: <PassengerNewOrder />,
         },
         {
           path: "/passenger-archive",
-          async lazy() {
-            const mod = await import("@/pages/Passenger/Archive/Archive");
-            return { Component: mod.default };
-          },
+          element: <PassengerArchive />,
         },
 
         // driver side
         {
           path: "/driver-profile",
-          async lazy() {
-            const mod = await import("@/pages/Driver/Profile/Driver");
-            return { Component: mod.default };
-          },
+          element: <DriverProfile />,
         },
         {
           path: "/driver-rides",
-          async lazy() {
-            const mod = await import("@/pages/Driver/Rides/Rieds");
-            return { Component: mod.default };
-          },
-        },
-        {
-          path: "/driver-new-ride",
-          async lazy() {
-            const mod = await import("@/pages/Driver/Routes/Routes");
-            return { Component: mod.default };
-          },
+          element: <DriverRides />,
         },
         {
           path: "/driver-change-tariff",
-          async lazy() {
-            const mod = await import("@/pages/Driver/Profile/Create");
-            return { Component: mod.default };
-          },
+          element: <DriverChangeTariff />,
         },
         {
           path: "/driver-rides-archive",
-          async lazy() {
-            const mod = await import("@/pages/Driver/Archive/Archive");
-            return { Component: mod.default };
-          },
+          element: <DriverArchive />,
         },
       ],
     },
-  ] as RouteObject[];
+  ];
+
+  return useRoutes(routes);
 };
 
 export default Root;

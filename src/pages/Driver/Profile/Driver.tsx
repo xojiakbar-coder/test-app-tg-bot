@@ -1,23 +1,27 @@
-import styles from "./Driver.module.scss";
 import { useNavigate } from "react-router-dom";
 
+import { storage } from "@/core/services";
+import { useDriver } from "@/modules/driver/hooks";
+
+import * as Icons from "@tabler/icons-react";
+import * as Cards from "@/components/Cards/DriverDataCard";
+
 import { Avatar } from "@mantine/core";
-import EmptyPage from "@/components/EmptyPage";
-import Button from "@/components/Button/Button";
-import { IconPhoneCall, IconPlus } from "@tabler/icons-react";
-import SpinnerLoader from "@/components/Loader/Spinner";
-import useDriver from "@/modules/driver/hooks/useDriver";
-import { DrvierDataCard } from "@/components/Card/DriverDataCard";
-import { getUserData } from "@/helpers";
+import { Button } from "@/components/Button";
+import { Spinner } from "@/components/Spinner";
+import { Placeholder } from "@/components/Placeholder";
+
+// styles
+import styles from "./Driver.module.scss";
 
 const Driver = () => {
-  const user = getUserData();
+  const user = storage.local.get("user");
   const navigate = useNavigate();
   const { driver, isLoading, isFetched } = useDriver();
 
   if (isFetched && !driver?.id) {
     return (
-      <EmptyPage
+      <Placeholder
         title={`Sizning ma'lumotlaringiz topilmadi`}
         buttonContent="Biz bilan bog'lanish"
         externalLink="https://t.me/murodov_azizmurod"
@@ -26,7 +30,7 @@ const Driver = () => {
     );
   }
 
-  if (isLoading && !isFetched) return <SpinnerLoader />;
+  if (isLoading && !isFetched) return <Spinner />;
 
   return (
     <div className={styles.wrapper}>
@@ -43,7 +47,7 @@ const Driver = () => {
           <h2 className={styles.name}>{user?.firstName}</h2>
         </div>
 
-        {isFetched && driver?.id && <DrvierDataCard data={driver} />}
+        {isFetched && driver?.id && <Cards.DrvierDataCard data={driver} />}
 
         <div className={styles.actions}>
           <a
@@ -53,7 +57,7 @@ const Driver = () => {
             <Button
               h={44}
               className={styles.button}
-              leftSection={<IconPhoneCall size={16} />}
+              leftSection={<Icons.IconPhoneCall size={16} />}
               gradient={{ from: "indigo", to: "blue", deg: 90 }}
             >
               Bog‘lanish
@@ -63,8 +67,8 @@ const Driver = () => {
           <Button
             h={44}
             className={styles.button}
-            leftSection={<IconPlus size={20} />}
-            onClick={() => navigate("driver-driver-change-tariff")}
+            leftSection={<Icons.IconPlus size={20} />}
+            onClick={() => navigate("/driver-change-tariff")}
             gradient={{ from: "indigo", to: "violet", deg: 90 }}
           >
             {driver?.currentTariff

@@ -11,8 +11,9 @@ import SubMenu from "./components/SubMenu";
 import * as TelegramUi from "@telegram-apps/telegram-ui";
 
 import { storage } from "@/core/services";
+import { Spinner } from "@/components/Spinner";
 import { useDriverCheck } from "@/modules/driver/hooks";
-import SpinnerLoader from "@/components/Loader/Spinner";
+import * as ConfigContext from "@/core/context/Config";
 
 function getUserRows(user: TelegramAppSdk.User): DisplayDataRow[] {
   return Object.entries(user).map(([title, value]) => ({ title, value }));
@@ -49,21 +50,6 @@ const Main = () => {
       : undefined;
   }, [initDataState]);
 
-  // const receiverRows = useMemo<DisplayDataRow[] | undefined>(() => {
-  //   return initDataState && initDataState.receiver
-  //     ? getUserRows(initDataState.receiver)
-  //     : undefined;
-  // }, [initDataState]);
-
-  // const chatRows = useMemo<DisplayDataRow[] | undefined>(() => {
-  //   return !initDataState?.chat
-  //     ? undefined
-  //     : Object.entries(initDataState.chat).map(([title, value]) => ({
-  //         title,
-  //         value,
-  //       }));
-  // }, [initDataState]);
-
   if (!initDataRows || !userRows) {
     return (
       <TelegramUi.Placeholder
@@ -82,32 +68,34 @@ const Main = () => {
   }
 
   useEffect(() => {
-    if (userRows) storage.local.set("user", JSON.stringify(initDataState));
+    const user = userRows.reduce((acc: any, { title, value }) => {
+      acc[title] = value;
+      return acc;
+    }, {});
+
+    if (userRows) storage.local.set("user", user);
   }, [initDataState, userRows]);
 
-  // this if case is for testing
-  // if (isFetched) {
-  //   window.alert(
-  //     `Is it driver: ${JSON.stringify(
-  //       data.isDriver
-  //     )} Is it passenger: ${JSON.stringify(data.isPassenger)} ${JSON.stringify(
-  //       data
-  //     )}`
-  //   );
-  // }
-
   if (!isFetched) {
-    return <SpinnerLoader />;
+    return <Spinner />;
   }
 
   return (
     <div className={styles.layout}>
-      <div className={styles.content}>
-        <Outlet />
-      </div>
+      <ConfigContext.Provider
+        value={{
+          driver: data.isDriver,
+          passenger: data.isPassenger,
+          role: data.role,
+        }}
+      >
+        <div className={styles.content}>
+          <Outlet />
+        </div>
 
-      {/* Sub Menu */}
-      <SubMenu />
+        {/* Sub Menu */}
+        <SubMenu />
+      </ConfigContext.Provider>
     </div>
   );
 };

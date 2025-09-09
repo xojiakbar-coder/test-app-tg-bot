@@ -6,10 +6,10 @@ import { useRoutes } from "@/modules/routes/hooks";
 
 import { storage } from "@/core/services";
 import { Page } from "@/components/Page/Page";
-import Title from "@/components/PageTitle/Title";
-import Card from "@/components/Card/RoutesCard/RoutesCard";
+import Title from "@/components/Title/Title";
+import Card from "@/components/Cards/RoutesCard/RoutesCard";
 
-export const PassengerRoutes = () => {
+const PassengerRoutes = () => {
   const navigate = useNavigate();
   const { routes, isLoading } = useRoutes();
 
@@ -39,124 +39,9 @@ export const PassengerRoutes = () => {
             onClick={() => handleCardClick(item.id)}
           />
         ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
-        {routes?.map((item) => (
-          <Card
-            id={item.id}
-            key={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => handleCardClick(item.id)}
-          />
-        ))}
       </div>
     </div>
   );
 };
+
+export default PassengerRoutes;

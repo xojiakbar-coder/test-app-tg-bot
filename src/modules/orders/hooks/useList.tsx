@@ -3,14 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import * as Api from "../api";
 import * as Types from "../types";
 import * as Mappers from "../mappers";
-import { getUserData } from "@/helpers";
+import { storage } from "@/core/services";
 
 interface IProps {
   enabled?: boolean;
 }
 
 const useList = ({ enabled = true }: IProps = {}) => {
-  const { userId } = getUserData();
+  const userId = storage.local.get("user")?.id;
 
   const initialData = { items: [] } as Types.IQuery.List;
 

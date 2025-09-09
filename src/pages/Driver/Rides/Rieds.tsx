@@ -1,17 +1,16 @@
 import { useEffect } from "react";
-import styles from "./MyOrders.module.scss";
+import { useDriver, useDelete } from "@/modules/driver/hooks";
 
-import { useDriver } from "@/modules/driver/hooks";
-import useDeleteRide from "@/modules/driver/hooks/useDelete";
+import * as Cards from "@/components/Cards";
+import { Title } from "@/components/Title";
+import { Spinner } from "@/components/Spinner";
+import { Placeholder } from "@/components/Placeholder";
 
-import EmptyPage from "@/components/EmptyPage";
-import CompletedOrders from "./CompletedOrders";
-import Title from "@/components/PageTitle/Title";
-import SpinnerLoader from "@/components/Loader/Spinner";
-import DriverRideCard from "@/components/Card/DriverRideCard/DriverRideCard";
+// styles
+import styles from "./Rides.module.scss";
 
 const DriverRides = () => {
-  const { mutate } = useDeleteRide();
+  const { mutate } = useDelete();
   const { driver, isLoading, isFetched } = useDriver();
 
   const activeRide = driver.recentRides?.find(
@@ -24,7 +23,7 @@ const DriverRides = () => {
 
   if (isFetched && driver.recentRides.length === 0) {
     return (
-      <EmptyPage
+      <Placeholder
         internalLink="/driver/new-order"
         title="Hozircha aktiv navbat yo‘q"
         buttonContent="Yangi buyurtma qo‘shish"
@@ -32,23 +31,22 @@ const DriverRides = () => {
     );
   }
 
-  if (isLoading) return <SpinnerLoader />;
+  if (isLoading) return <Spinner />;
 
   return (
-    <div className={styles.my_orders_wrapper}>
+    <div className={styles.rides_wrapper}>
       <Title>Buyurtmalar ro'yxati</Title>
 
       <div className={styles.sections_wrapper}>
         {activeRide ? (
           <div className={styles.active_order_card}>
-            <DriverRideCard data={activeRide} mutation={mutate} />
+            <Cards.DriverRideCard data={activeRide} mutation={mutate} />
           </div>
         ) : (
           <div className={styles.no_active_ride}>
-            <p>Hozircha aktiv navbat yo‘q</p>
+            <p>Sizda hozircha faol navbat yo‘q</p>
           </div>
         )}
-        <CompletedOrders />
       </div>
     </div>
   );

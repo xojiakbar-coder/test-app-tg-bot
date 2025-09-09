@@ -1,5 +1,5 @@
 import styles from "./Archive.module.scss";
-import Title from "@/components/PageTitle/Title";
+import Title from "@/components/Title/Title";
 
 const Archive = () => {
   return (

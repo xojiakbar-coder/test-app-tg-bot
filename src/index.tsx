@@ -14,7 +14,6 @@ import { EnvUnsupported } from "@/components/EnvUnsupported.tsx";
 import { init } from "@/init.ts";
 // Mock the environment in case, we are outside Telegram.
 import "./mockEnv.ts";
-// import { BrowserRouter } from "react-router-dom";
 import {
   QueryClientProvider,
   QueryClient,
@@ -24,6 +23,7 @@ import {
 import { MantineProvider } from "@mantine/core";
 import getApiError from "./core/utils/getApiError.ts";
 import { Notifications } from "@mantine/notifications";
+import { BrowserRouter } from "react-router-dom";
 
 const showApiError = (error: any) => {
   const data = getApiError(error);
@@ -97,13 +97,14 @@ try {
   }).then(() => {
     root.render(
       <StrictMode>
-        <QueryClientProvider client={queryClient}>
-          <MantineProvider>
-            <Notifications />
-            <App />
-          </MantineProvider>
-        </QueryClientProvider>
-        {/* <BrowserRouter></BrowserRouter> */}
+        <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
+            <MantineProvider>
+              <Notifications />
+              <App />
+            </MantineProvider>
+          </QueryClientProvider>
+        </BrowserRouter>
       </StrictMode>
     );
   });

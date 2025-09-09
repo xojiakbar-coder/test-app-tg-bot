@@ -1,20 +1,21 @@
-import styles from "./Orders.module.scss";
 import { useDelete, useList } from "@/modules/orders/hooks";
 
-import EmptyPage from "@/components/EmptyPage";
-import SpinnerLoader from "@/components/Loader/Spinner";
-import { OrderCard } from "@/components/Card/OrderCard";
-import Title from "@/components/PageTitle/Title";
-import Page from "@/components/Page";
+import { Title } from "@/components/Title";
+import { Spinner } from "@/components/Spinner";
+import * as Cards from "@/components/Cards/OrderCard";
+import { Placeholder } from "@/components/Placeholder";
+
+// styles
+import styles from "./Orders.module.scss";
 
 const PassengerOrders = () => {
   const { items, isLoading, isSuccess, isFetched } = useList();
   const { mutate } = useDelete();
 
-  if (isLoading && isFetched) return <SpinnerLoader />;
+  if (isLoading && isFetched) return <Spinner />;
 
   if (!isLoading && items.length === 0)
-    return <EmptyPage internalLink="/" title="Hozircha safarlar yo‘q" />;
+    return <Placeholder internalLink="/" title="Hozircha safarlar yo‘q" />;
 
   return (
     <div className={styles.container}>
@@ -23,7 +24,9 @@ const PassengerOrders = () => {
         {isSuccess &&
           items.length > 0 &&
           items.map((item) => {
-            return <OrderCard key={item.id} data={item} mutation={mutate} />;
+            return (
+              <Cards.OrderCard key={item.id} data={item} mutation={mutate} />
+            );
           })}
       </div>
     </div>

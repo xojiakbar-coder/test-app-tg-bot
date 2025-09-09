@@ -2,9 +2,11 @@ import React from "react";
 import { Button } from "../Button";
 import { Text } from "@mantine/core";
 import { IconInbox } from "@tabler/icons-react";
-import styles from "./EmptyPage.module.scss";
 import { useNavigate } from "react-router-dom";
 import type { TablerIcon } from "@tabler/icons-react";
+
+// styles
+import styles from "./Placeholder.module.scss";
 
 interface IProps {
   title: string;

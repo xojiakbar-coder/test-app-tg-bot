@@ -3,10 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Api from "../api.ts";
 import * as Types from "../types.ts";
 import * as Mappers from "../mappers.ts";
-import getUserData from "@/helpers/getUserData.tsx";
+import storage from "@/core/services/storage.ts";
 
 const useDelete = () => {
-  const { userId } = getUserData();
+  const userId = storage.local.get("user")?.id;
   const queryClient = useQueryClient();
 
   return useMutation({

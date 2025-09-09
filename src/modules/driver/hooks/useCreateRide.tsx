@@ -24,7 +24,7 @@ const useCreateRide = (options?: { onSuccess?: () => void }) => {
     },
 
     onSuccess: (_, variables) => {
-      message.success("✅ Safar navbatga muvaffaqiyatli qo‘shildi");
+      message.success("Safar navbatga qo‘shildi");
       navigate("driver-rides");
 
       queryClient.invalidateQueries({

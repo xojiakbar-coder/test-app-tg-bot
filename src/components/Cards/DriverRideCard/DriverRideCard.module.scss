@@ -3,9 +3,13 @@
   padding: 20px;
   border-radius: 12px;
   height: max-content !important;
-  background-color: #ffffff;
+  background-color: #f2fcfe;
   border: 1px solid #e0e0e0;
-  transition: box-shadow 0.3s ease;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+.completed {
+  background-color: #ededed;
 }
 
 .top_content_wrapper {
@@ -35,7 +39,7 @@ p {
 .driverSection {
   margin-top: 12px;
   padding-top: 10px;
-  border-top: 1px dashed #666;
+  border-top: 1px dashed #ccc;
 
   strong {
     margin-bottom: 4px;

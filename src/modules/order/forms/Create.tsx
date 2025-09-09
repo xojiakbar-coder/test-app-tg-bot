@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FormProvider, useForm, type UseFormReturn } from "react-hook-form";
 
-import { keepOptions, getUserData } from "@/helpers";
+import { keepOptions } from "@/helpers";
 import { useNavigate, useParams } from "react-router-dom";
 
 import dayjs from "dayjs";
@@ -11,6 +11,7 @@ import * as yup from "yup";
 import * as Api from "../api";
 import * as Types from "../types";
 import * as Mappers from "../mappers";
+import { storage } from "@/core/services";
 
 interface FormValues extends Types.IForm.Create {}
 
@@ -33,7 +34,7 @@ const Create: React.FC<IProps> = ({
   onSuccess,
   className,
 }) => {
-  const { userId } = getUserData();
+  const userId = storage.local.get("user")?.id;
   const { id } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();

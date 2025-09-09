@@ -3,10 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import * as Api from "../api";
 import * as Types from "../types";
 import * as Mappers from "../mappers";
-import { getUserData } from "@/helpers";
+import { storage } from "@/core/services";
 
 const usePassenger = () => {
-  const { userId } = getUserData();
+  const userId = storage.local.get("user")?.id;
 
   const initialData: Types.IQuery.Single = { item: Mappers.Passenger() };
 

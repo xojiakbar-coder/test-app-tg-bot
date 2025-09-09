@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: calc(100dvh - 80px);
-  min-height: calc(100dvh - 80px);
+  height: calc(100dvh);
+  min-height: calc(100dvh);
+  background-color: transparent;
 }

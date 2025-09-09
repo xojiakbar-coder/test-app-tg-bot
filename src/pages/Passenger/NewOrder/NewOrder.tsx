@@ -1,26 +1,14 @@
 import Form from "./components/Form";
-
-import { Button } from "@/components/Button";
-import styles from "./NewOrder.module.scss";
-import Title from "@/components/PageTitle/Title";
-
-import { useEffect } from "react";
-import { message } from "@/components/Message";
 import CreateForm from "@/modules/order/forms/Create";
-import { backButton, useSignal, mainButton } from "@telegram-apps/sdk-react";
+
+import { Title } from "@/components/Title";
+import { Button } from "@/components/Button";
+import { message } from "@/components/Message";
+
+// styles
+import styles from "./NewOrder.module.scss";
 
 const NewOrder = () => {
-  const isVisible = useSignal(backButton.isVisible);
-
-  useEffect(() => {}, [isVisible]);
-
-  useEffect(() => {
-    mainButton.text();
-    return () => {
-      backButton.hide();
-    };
-  }, []);
-
   return (
     <div className={styles.container}>
       <Title>Buyurtma berish</Title>

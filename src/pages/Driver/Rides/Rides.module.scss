@@ -1,0 +1,42 @@
+.rides_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+  padding: 30px 24px;
+  height: var(--max-height);
+
+  @media (max-width: 768px) {
+    padding: 20px 8px;
+  }
+}
+
+.active_order_card {
+  height: max-content;
+}
+
+.sections_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100% !important;
+  gap: 30px;
+}
+
+.no_active_ride {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+  height: calc(var(--max-height) - 72px);
+
+  & > p {
+    color: #000;
+    font-size: 16px;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
+  }
+}

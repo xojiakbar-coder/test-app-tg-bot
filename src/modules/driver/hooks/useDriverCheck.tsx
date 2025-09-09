@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { getUserData } from "@/helpers";
 import { useQuery } from "@tanstack/react-query";
 
 import * as Api from "../api";
@@ -7,8 +6,8 @@ import * as Types from "../types";
 import * as Mappers from "../mappers";
 import { storage } from "@/core/services";
 
-const useDriver = () => {
-  const { userId } = getUserData();
+const useDriverCheck = () => {
+  const userId = storage.local.get("user")?.id;
 
   const initialData = {
     data: Mappers.DriverCheck(),
@@ -21,15 +20,20 @@ const useDriver = () => {
     queryKey: ["driverCheck", "single", userId],
     queryFn: async () => {
       const { data } = await Api.DriverCheck(userId || "");
-      return {
-        data: Mappers.DriverCheck(data && data),
-      };
+      return { data: Mappers.DriverCheck(data && data) };
     },
     initialData,
     enabled: !!userId,
   });
 
+  useEffect(() => {
+    // console.log(data.data);
+    if (data?.data) {
+      storage.local.set("driverCheck", data.data);
+    }
+  }, [data]);
+
   return { ...args, ...data };
 };
 
-export default useDriver;
+export default useDriverCheck;

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import * as Types from "@/modules/driver/types";
-import styles from "./DriverRideCard.module.scss";
 
 import { Badge, Button, Flex } from "@mantine/core";
 import { useCompleteRide } from "@/modules/driver/hooks";
+
+// styles
+import cx from "clsx";
+import styles from "./DriverRideCard.module.scss";
 
 const DriverRideCard = ({
   data,
@@ -21,7 +24,7 @@ const DriverRideCard = ({
   };
 
   return (
-    <div className={styles.card}>
+    <div className={cx(styles.card, data.isCompleted && styles.completed)}>
       <div className={styles.top_content_wrapper}>
         <h3 className={styles.title}>Buyurtma ID: {data.id}</h3>
         {data !== null && data.driver && (
@@ -49,7 +52,7 @@ const DriverRideCard = ({
       ) : null}
 
       {data.bookings.length > 0 &&
-        data.bookings.map((item: any) => (
+        data.bookings.map((item: Types.IEntity.Bookings) => (
           <div className={styles.driverSection} key={item.id}>
             <p>
               <strong>Yo‘lovchi:</strong> {item.passenger.fullName}
@@ -62,6 +65,11 @@ const DriverRideCard = ({
               <p>
                 <strong>Telefon raqami:</strong> {item.passenger.phoneNumber}
               </p>
+              {item.ridePrice !== null && item.ridePrice !== "" && (
+                <p>
+                  <strong>To‘lo‘v miqdori:</strong> {item.ridePrice}
+                </p>
+              )}
             </>
           </div>
         ))}

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { getUserData } from "@/helpers";
 import { useQuery } from "@tanstack/react-query";
 
 import * as Api from "../api";
@@ -8,7 +7,7 @@ import * as Mappers from "../mappers";
 import { storage } from "@/core/services";
 
 const useDriver = () => {
-  const { userId } = getUserData();
+  const userId = storage.local.get("user")?.id;
 
   const initialData = { driver: Mappers.Driver() } as Types.IQuery.Single;
 

@@ -1,13 +1,17 @@
 import { useState } from "react";
-import styles from "./Routes.module.scss";
+
 import { useRoutes } from "@/modules/routes/hooks";
 import { useCreateRide, useDriver } from "@/modules/driver/hooks";
 
+import * as Cards from "@/components/Cards";
+import * as Icons from "@tabler/icons-react";
+
+import { Title } from "@/components/Title";
 import { Button } from "@/components/Button";
-import EmptyPage from "@/components/EmptyPage";
-import Title from "@/components/PageTitle/Title";
-import RoutesCard from "@/components/Card/RoutesCard/RoutesCard";
-import { IconInfoCircle, IconNavigation } from "@tabler/icons-react";
+import { Placeholder } from "@/components/Placeholder";
+
+// styles
+import styles from "./Routes.module.scss";
 
 const DriverRoutes = () => {
   const [selectedItem, setSelectItem] = useState<number | null>(null);
@@ -32,8 +36,8 @@ const DriverRoutes = () => {
 
   if (isFetched && activeRide) {
     return (
-      <EmptyPage
-        icon={IconInfoCircle}
+      <Placeholder
+        icon={Icons.IconInfoCircle}
         title="Siz allaqachon aktiv navbatdasiz"
       />
     );
@@ -44,7 +48,7 @@ const DriverRoutes = () => {
       <Title>Yo‘nalishlar tanlang</Title>
       <div className={styles.card_wrapper}>
         {routes.map((item, index) => (
-          <RoutesCard
+          <Cards.RoutesCard
             key={item.id}
             id={item.id}
             start={item.start}
@@ -69,7 +73,7 @@ const DriverRoutes = () => {
                 styles.selected_location_active
               }`}
             >
-              <IconNavigation />
+              <Icons.IconNavigation />
               <b className={styles.selected_location_label}>Yo‘nalish:</b>
               {selectedItem !== null && routes[selectedItem]
                 ? `${routes[selectedItem].start.name} - ${routes[selectedItem].finish.name}`
@@ -78,12 +82,12 @@ const DriverRoutes = () => {
 
             <Button
               height={40}
+              color="red"
               w="max-content"
+              variant="outline"
               className={styles.remove_btn}
               disabled={selectedItem == null}
               onClick={() => setSelectItem(null)}
-              variant="gradient"
-              gradient={{ from: "red", to: "pink", deg: 90 }}
             >
               Olib tashlash
             </Button>

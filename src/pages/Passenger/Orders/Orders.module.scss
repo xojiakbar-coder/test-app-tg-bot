@@ -2,12 +2,16 @@
   width: 100%;
   padding: 30px 24px;
   height: max-content;
-  min-height: var(--max-height);
+  height: var(--max-height);
+
+  @media (max-width: 768px) {
+    padding: 20px 8px;
+  }
 }
 
 .myOrdersWrapper {
   display: grid;
-  padding: 40px 0;
+  padding: 20px 0;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 16px;
   width: 100%;
