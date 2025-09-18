@@ -22,7 +22,7 @@ export const Bookings = (src?: any): Types.IEntity.Bookings => ({
   extraLuggage: get(src, "extra_luggage", ""),
   isDelivery: get(src, "is_delivery", false),
   ridePrice: get(src, "ride_price", ""),
-  isCashbackUsed: get(src, "is_cashback_used", false),
+  isCashbackUsed: get(src, "is_cashback_used", 0),
   cashbackUsedPercent: get(src, "cashback_used_percent", 0),
   paymentType: get(src, "payment_type", ""),
   dateOfDeparture: get(src, "date_of_departure", ""),
@@ -81,11 +81,11 @@ export const Driver = (src?: any): Types.IEntity.Driver => ({
 
 export const DriverCheck = (src?: any): Types.IEntity.DriverCheck => ({
   telegramId: get(src, "telegram_id", ""),
-  isPassenger: get(src, "is_passenger", false),
-  isDriver: get(src, "is_driver", false),
+  isPassenger: get(src, "is_passenger", undefined),
+  isDriver: get(src, "is_driver", undefined),
   driverId: get(src, "driver_id", 0),
   passengerId: get(src, "passenger_id", 0),
-  role: get(src, "role", "passenger"),
+  role: get(src, "role", undefined),
   driverIsActive: get(src, "driver_is_active", false),
 });
 

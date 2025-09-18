@@ -11,7 +11,7 @@ import styles from "./Rides.module.scss";
 
 const DriverRides = () => {
   const { mutate } = useDelete();
-  const { driver, isLoading, isFetched } = useDriver();
+  const { driver, isLoading } = useDriver();
 
   const activeRide = driver.recentRides?.find(
     (ride) => ride.isCompleted == false
@@ -21,7 +21,7 @@ const DriverRides = () => {
     driver.recentRides.find((item) => item.isCompleted === false);
   }, [driver]);
 
-  if (isFetched && driver.recentRides.length === 0) {
+  if (isLoading && driver.recentRides.length === 0) {
     return (
       <Placeholder
         internalLink="/driver/new-order"
@@ -31,7 +31,7 @@ const DriverRides = () => {
     );
   }
 
-  if (isLoading) return <Spinner />;
+  // if (isLoading) return <Spinner />;
 
   return (
     <div className={styles.rides_wrapper}>

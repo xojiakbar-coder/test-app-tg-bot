@@ -28,8 +28,13 @@
   width: 100%;
   padding: 12px 8px;
   border-radius: 10px;
-  border: 1px solid rgb(19, 223, 148);
-  background: linear-gradient(90deg, rgb(15, 139, 94), rgb(10, 140, 99), rgb(6, 168, 127));
+  border: 1px solid rgb(235, 238, 203);
+  background: linear-gradient(
+    90deg,
+    rgb(134, 132, 123),
+    rgb(152, 152, 147),
+    rgb(167, 167, 161)
+  );
 }
 
 .icon {
@@ -42,6 +47,11 @@
 }
 
 .active {
-  border: 1px solid rgb(13, 255, 223);
-  background: linear-gradient(90deg, rgb(11, 82, 56), rgb(7, 78, 56), rgb(6, 82, 63));
+  border: 1px solid rgb(13, 195, 150);
+  background: linear-gradient(
+    90deg,
+    rgb(11, 82, 56),
+    rgb(7, 78, 56),
+    rgb(6, 82, 63)
+  );
 }

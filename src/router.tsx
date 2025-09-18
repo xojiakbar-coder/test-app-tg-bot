@@ -1,5 +1,6 @@
+// import { useEffect } from "react";
 import Layout from "@/layouts/Main/Main";
-import { storage } from "./core/services";
+import { Spinner } from "@/components/Spinner";
 import { useRoutes, type RouteObject } from "react-router-dom";
 
 // Passenger pages
@@ -9,15 +10,23 @@ import PassengerProfile from "@/pages/Passenger/Profile/Profile";
 import PassengerArchive from "@/pages/Passenger/Archive/Archive";
 import PassengerNewOrder from "@/pages/Passenger/NewOrder/NewOrder";
 
+// import { useContext } from "./core/context/User";
+
 // Driver pages
 import DriverRides from "@/pages/Driver/Rides/Rieds";
 import DriverRoutes from "./pages/Driver/Routes/Routes";
 import DriverProfile from "@/pages/Driver/Profile/Driver";
 import DriverArchive from "@/pages/Driver/Archive/Archive";
 import DriverChangeTariff from "@/pages/Driver/Profile/Create";
+import { useDriverCheck } from "@/modules/driver/hooks";
 
 const Root = () => {
-  const isDriver = storage.local.get("isDriver") === "true";
+  const {
+    data: { role },
+    isLoading,
+  } = useDriverCheck();
+
+  if (isLoading) return <Spinner />;
 
   const routes: RouteObject[] = [
     {
@@ -26,7 +35,12 @@ const Root = () => {
       children: [
         {
           index: true,
-          element: isDriver ? <DriverRoutes /> : <PassengerRoutes />,
+          element:
+            role !== undefined && role === "driver" ? (
+              <DriverRoutes />
+            ) : (
+              <PassengerRoutes />
+            ),
         },
 
         // passenger side

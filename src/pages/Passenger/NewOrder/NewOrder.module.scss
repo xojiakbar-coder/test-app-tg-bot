@@ -152,6 +152,13 @@
   font-size: var(--mantine-font-size-xs);
 }
 
+.cashback_mount {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
 :global {
   .mantine-DatePickerInput-calendarHeader {
     color: #000;
@@ -161,8 +168,12 @@
     margin-top: 5px;
   }
 
-  .mantine-TimeInput-input {
-    color: #7b8186;
+  .mantine-InputWrapper-label {
+    color: #333537;
+  }
+
+  .mantine-Input-input {
+    color: #333537;
   }
 
   .mantine-Chip-label {

@@ -5,6 +5,8 @@ import { ErrorBoundary } from "@/components/ErrorBoundary.tsx";
 
 import * as RouterDom from "react-router-dom";
 import * as TelegramAppSdk from "@telegram-apps/sdk-react";
+import { Spinner } from "./components/Spinner";
+import * as UserContext from "@/core/context/User";
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
@@ -34,9 +36,12 @@ export function App() {
           ["macos", "ios"].includes(lp.tgWebAppPlatform) ? "ios" : "base"
         }
       >
-        <Suspense fallback={<div>Loading...</div>}>
-          <Root />
-        </Suspense>
+        <UserContext.Provider>
+          <Suspense fallback={<Spinner />}>
+            <Root />
+          </Suspense>
+        </UserContext.Provider>
+        {/* <ConfigContext.Provider value={ConfigContext.useContext()}></ConfigContext.Provider> */}
       </AppRoot>
     </ErrorBoundary>
   );

@@ -1,5 +1,5 @@
-import * as Types from '@/modules/driver/types';
-import * as RoutesType from '@/modules/routes/types';
+import * as Types from "@/modules/driver/types";
+import * as RoutesType from "@/modules/routes/types";
 
 export declare namespace IApi {
   export namespace Single {
@@ -17,13 +17,13 @@ export declare namespace IEntity {
     route: number;
     isDelivery?: boolean;
     ridePrice?: string | null;
-    cashbackUsedPercent?: number;
+    cashbackUsed?: number;
     frontSeat?: boolean;
     extraLuggage?: string;
     isCashbackUsed?: boolean;
     dateOfDeparture: string;
-    carType: 'Standart' | 'Comfort' | 'Biznes';
-    paymentType: 'Cash' | 'Card';
+    carType: "Standart" | "Comfort" | "Biznes";
+    paymentType: "Cash" | "Card";
   }
 
   export interface IDriver {
@@ -57,7 +57,6 @@ export declare namespace IEntity {
     language_code?: string;
     allows_write_to_pm?: boolean;
     photo_url: string;
-    debug?: any;
   }
 }
 
@@ -81,14 +80,14 @@ export declare namespace IForm {
     route?: number;
     isDelivery?: boolean;
     ridePrice?: string | null;
-    cashbackUsedPercent?: number;
+    cashbackUsed?: number;
     frontSeat?: boolean;
     extraLuggage?: string;
     isCashbackUsed?: boolean;
-    carType: 'Standart' | 'Comfort' | 'Biznes';
+    carType: "Standart" | "Comfort" | "Biznes";
     dateOfDeparture: string;
     timeOfDeparture: string;
-    paymentType: 'Cash' | 'Card';
+    paymentType: "Cash" | "Card";
   }
 
   export interface Update {}

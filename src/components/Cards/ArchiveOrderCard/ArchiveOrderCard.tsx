@@ -1,34 +1,20 @@
 import * as Types from "@/modules/orders/types";
 
 import dayjs from "dayjs";
-import { useState } from "react";
 
-import styles from "./OrderCard.module.scss";
-import { Badge, Button, Flex } from "@mantine/core";
+import cx from "clsx";
+import styles from "./ArchiveOrderCard.module.scss";
 
-const OrderCard = ({
-  data,
-  mutation,
-}: {
-  data: Types.IEntity.MyOrders;
-  mutation: (params: { id: number }) => void;
-}) => {
-  const [deletingId, setDeletingId] = useState<number | null>(null);
-
-  const handleDeleteItem = (id: number) => {
-    setDeletingId(id);
-    mutation({ id });
-  };
-
+const ArchiveOrderCard = ({ data }: { data: Types.IEntity.MyOrders }) => {
   return (
-    <div className={styles.card}>
+    <div
+      className={cx(
+        styles.card,
+        data?.relatedRide?.isCompleted && styles.completed
+      )}
+    >
       <div className={styles.top_content_wrapper}>
         <h3 className={styles.title}>Buyurtma ID: {data.id}</h3>
-        {data.relatedRide !== null && !data.relatedRide.isCompleted && (
-          <Badge color="green" className={styles.badge}>
-            Aktiv
-          </Badge>
-        )}
       </div>
       <p>
         <strong>Yaratilgan:</strong>{" "}
@@ -90,22 +76,8 @@ const OrderCard = ({
           </>
         </div>
       )}
-      <Flex justify="flex-end" gap={7}>
-        <Button
-          h={42}
-          mt="lg"
-          size="sm"
-          color="red"
-          w="max-content"
-          loading={deletingId === +data.id}
-          disabled={deletingId === +data.id}
-          onClick={() => handleDeleteItem(+data.id)}
-        >
-          Buyurtmani bekor qilish
-        </Button>
-      </Flex>
     </div>
   );
 };
 
-export default OrderCard;
+export default ArchiveOrderCard;

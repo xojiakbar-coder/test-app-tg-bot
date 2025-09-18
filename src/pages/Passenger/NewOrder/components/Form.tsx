@@ -2,11 +2,17 @@ import styles from "../NewOrder.module.scss";
 
 import * as Fields from "@/containers/Fields";
 
+import { usePassenger } from "@/modules/passenger/hooks";
+
+import { Input, Space, Badge } from "@mantine/core";
 import { PaymentCard } from "@/components/Cards/PaymentCard";
 import { CarTypeCard } from "@/components/Cards/CarTypeCard";
-import { Space } from "@mantine/core";
 
 const Form = () => {
+  const {
+    data: { item },
+  } = usePassenger();
+
   return (
     <>
       <Fields.DateTimePickerInput
@@ -27,13 +33,13 @@ const Form = () => {
 
       <Space h="lg" />
 
-      <Fields.RadioGroup name="carType" label="Mashina turi:">
+      <Fields.RadioGroup name="carType" label="Mashina turi:" withAsterisk>
         <CarTypeCard />
       </Fields.RadioGroup>
 
       <Space h="lg" />
 
-      <Fields.RadioGroup name="paymentType" label="To‘lov turi:">
+      <Fields.RadioGroup name="paymentType" label="To‘lov turi:" withAsterisk>
         <PaymentCard />
       </Fields.RadioGroup>
 
@@ -44,6 +50,21 @@ const Form = () => {
         label="Qo‘shimcha yuk"
         placeholder="Qo‘shimcha yuk haqida yozing"
       />
+
+      <Space h="lg" />
+
+      <Input.Wrapper>
+        <Fields.Text
+          name="cashbackUsed"
+          label="Cashback miqdori"
+          placeholder={"0"}
+          inputWrapperOrder={["label", "input", "description"]}
+        />
+        <Input.Description className={styles.cashback_mount} component={"div"}>
+          Maximum cashback ishlatilishi:{" "}
+          <Badge color="teal">{item.cashbackAmount}</Badge>
+        </Input.Description>
+      </Input.Wrapper>
 
       <Space h="lg" />
 

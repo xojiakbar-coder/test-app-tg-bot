@@ -29,19 +29,6 @@
   }
 }
 
-.title {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 36px;
-  font-family: var(--font);
-
-  @media (min-width: 768px) {
-    font-size: 28px;
-  }
-}
-
 .orderCard {
   cursor: pointer;
   padding: 12px 16px;

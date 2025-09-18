@@ -2,7 +2,15 @@ import styles from "./DataCard.module.scss";
 import * as Types from "@/modules/passenger/types";
 
 import * as Icons from "@tabler/icons-react";
-import { ActionIcon, Box, CopyButton, Flex, Stack, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Badge,
+  Box,
+  CopyButton,
+  Flex,
+  Stack,
+  Text,
+} from "@mantine/core";
 
 const DataCard = ({ data }: { data: Types.IEntity.Passenger }) => {
   return (
@@ -25,8 +33,6 @@ const DataCard = ({ data }: { data: Types.IEntity.Passenger }) => {
         </Stack>
       </div>
 
-      <div className={styles.divider} />
-
       <div className={styles.card}>
         <Stack gap={8}>
           <div className={styles.header}>
@@ -41,11 +47,11 @@ const DataCard = ({ data }: { data: Types.IEntity.Passenger }) => {
               Cashback miqdori
             </Text>
           </div>
-          <Text className={styles.value}>{`${data.cashbackAmount} so‘m`}</Text>
+          <Text className={styles.value} component="div">
+            <Badge color="teal">{data.cashbackAmount}</Badge>
+          </Text>
         </Stack>
       </div>
-
-      <div className={styles.divider} />
 
       <div className={styles.card}>
         <Stack gap={8}>

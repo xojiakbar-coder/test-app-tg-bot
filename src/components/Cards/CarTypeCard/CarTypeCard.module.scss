@@ -22,7 +22,12 @@
   padding: 12px 8px;
   border-radius: 10px;
   border: 1px solid rgb(235, 238, 203);
-  background: linear-gradient(90deg, rgb(175, 173, 161), rgb(185, 185, 178), rgb(195, 195, 188));
+  background: linear-gradient(
+    90deg,
+    rgb(134, 132, 123),
+    rgb(152, 152, 147),
+    rgb(167, 167, 161)
+  );
 }
 
 .car_photo {
@@ -43,5 +48,10 @@
 
 .active {
   border: 1px solid rgb(57, 248, 255);
-  background: linear-gradient(90deg, rgb(10, 88, 60), rgb(10, 90, 65), rgb(9, 90, 70));
+  background: linear-gradient(
+    90deg,
+    rgb(10, 88, 60),
+    rgb(10, 90, 65),
+    rgb(9, 90, 70)
+  );
 }

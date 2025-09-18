@@ -27,7 +27,6 @@ const useDriverCheck = () => {
   });
 
   useEffect(() => {
-    // console.log(data.data);
     if (data?.data) {
       storage.local.set("driverCheck", data.data);
     }

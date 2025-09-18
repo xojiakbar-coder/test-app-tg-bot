@@ -1,8 +1,9 @@
 export declare namespace IContext {
   export interface State {
-    driver: boolean;
-    passenger: boolean;
-    unregisteredUser: boolean;
+    driver: boolean | undefined;
+    role: "driver" | "passenger" | "none" | undefined;
+    passenger: boolean | undefined;
+    unregisteredUser?: boolean;
   }
 
   export interface Value extends State {

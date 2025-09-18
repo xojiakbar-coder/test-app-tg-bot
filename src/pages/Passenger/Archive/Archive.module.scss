@@ -3,6 +3,10 @@
   padding: 30px 24px;
   height: max-content;
   min-height: var(--max-height);
+
+  @media (max-width: 768px) {
+    padding: 20px 8px;
+  }
 }
 
 .myOrdersWrapper {

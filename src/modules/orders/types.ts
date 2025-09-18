@@ -20,7 +20,7 @@ export declare namespace IEntity {
     isDelivery: boolean;
     dateOfDeparture: string;
     isCashbackUsed: boolean;
-    cashbackUsedPercent: number;
+    cashbackUsed: number;
     extraLuggage: string | null;
     carType: string;
     paymentType: string;

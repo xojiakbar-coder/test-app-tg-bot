@@ -6,7 +6,6 @@
   padding: 0;
   scrollbar-width: thin;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -23,7 +22,8 @@
 }
 
 body {
-  color: rgb(45, 45, 45);
+  // color: rgb(45, 45, 45);
+  color: #fff;
   font-family: "Roboto", sans-serif;
   background-color: #fdfdfd !important;
 }

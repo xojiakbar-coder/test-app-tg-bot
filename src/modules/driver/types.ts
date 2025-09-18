@@ -81,7 +81,7 @@ export declare namespace IEntity {
     extraLuggage: string;
     isDelivery: boolean;
     ridePrice: string;
-    isCashbackUsed: boolean;
+    isCashbackUsed: number;
     cashbackUsedPercent: number;
     paymentType: string;
     dateOfDeparture: string;
@@ -114,11 +114,11 @@ export declare namespace IEntity {
 
   export interface DriverCheck {
     telegramId: string;
-    isPassenger: boolean;
-    isDriver: boolean;
+    isPassenger: boolean | undefined;
+    isDriver: boolean | undefined;
     driverId: number;
     passengerId: number;
-    role: "passenger" | "driver" | "none";
+    role: "driver" | "passenger" | "none" | undefined;
     driverIsActive: boolean;
   }
 

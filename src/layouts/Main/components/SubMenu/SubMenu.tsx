@@ -1,13 +1,17 @@
 import * as RouterDom from "react-router-dom";
 import * as SubMenuNavigation from "./navigation";
-import * as ConfigContext from "@/core/context/Config";
 
 // styles
 import styles from "./SubMenu.module.scss";
+import { useDriverCheck } from "@/modules/driver/hooks";
 
 const SubMenu = () => {
   const location = RouterDom.useLocation();
-  const { driver } = ConfigContext.useContext();
+  const {
+    data: { isDriver: driver },
+  } = useDriverCheck();
+
+  console.log(driver);
 
   const navItems = driver
     ? SubMenuNavigation.driver_nav

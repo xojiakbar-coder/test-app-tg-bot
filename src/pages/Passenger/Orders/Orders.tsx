@@ -12,9 +12,11 @@ const PassengerOrders = () => {
   const { items, isLoading, isSuccess, isFetched } = useList();
   const { mutate } = useDelete();
 
+  const activeRides = items?.filter((ride) => !ride.relatedRide?.isCompleted);
+
   if (isLoading && isFetched) return <Spinner />;
 
-  if (!isLoading && items.length === 0)
+  if (!isLoading && activeRides.length === 0)
     return <Placeholder internalLink="/" title="Hozircha safarlar yo‘q" />;
 
   return (
@@ -22,8 +24,8 @@ const PassengerOrders = () => {
       <Title>Buyurtmalaringiz ro'yxati</Title>
       <div className={styles.myOrdersWrapper}>
         {isSuccess &&
-          items.length > 0 &&
-          items.map((item) => {
+          activeRides.length > 0 &&
+          activeRides.map((item) => {
             return (
               <Cards.OrderCard key={item.id} data={item} mutation={mutate} />
             );

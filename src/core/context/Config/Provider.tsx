@@ -6,9 +6,9 @@ import storage from "@/core/services/storage.ts";
 type IProps = {
   children: React.ReactNode;
   value: {
-    driver: boolean;
-    passenger: boolean;
-    role: "passenger" | "driver" | "none";
+    driver: boolean | undefined;
+    passenger: boolean | undefined;
+    role: "passenger" | "driver" | "none" | undefined;
   };
 };
 
@@ -18,8 +18,6 @@ const Provider: React.FC<IProps> = ({ children, value }) => {
     passenger: storage.local.get("isPassenger") === "true",
     unregisteredUser: storage.local.get("unregisteredUser") === "true",
   });
-
-  // console.log(state);
 
   // 🔑 API response kelganda state va storage ni yangilash
   useEffect(() => {
@@ -44,7 +42,7 @@ const Provider: React.FC<IProps> = ({ children, value }) => {
   const contextValue = useMemo(
     () => ({
       ...state,
-      setState, // haqiqiy updater
+      setState,
     }),
     [state]
   );

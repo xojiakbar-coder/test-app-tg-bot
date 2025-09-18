@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useRoutes } from "@/modules/routes/hooks";
 import { useCreateRide, useDriver } from "@/modules/driver/hooks";
@@ -12,11 +12,13 @@ import { Placeholder } from "@/components/Placeholder";
 
 // styles
 import styles from "./Routes.module.scss";
+import { storage } from "@/core/services";
+import { Spinner } from "@/components/Spinner";
 
 const DriverRoutes = () => {
   const [selectedItem, setSelectItem] = useState<number | null>(null);
 
-  const { driver, isFetched } = useDriver();
+  const { driver, isLoading } = useDriver();
   const { routes } = useRoutes();
 
   const { mutate, isPending } = useCreateRide();
@@ -34,7 +36,13 @@ const DriverRoutes = () => {
     }
   };
 
-  if (isFetched && activeRide) {
+  useEffect(() => {
+    console.log(driver);
+  }, [driver]);
+
+  if (isLoading || driver.id === 0) return <Spinner />;
+
+  if (activeRide && storage.local.get("driver") !== undefined) {
     return (
       <Placeholder
         icon={Icons.IconInfoCircle}

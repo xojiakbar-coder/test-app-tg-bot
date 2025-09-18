@@ -1,13 +1,13 @@
-// styles
-import styles from "./Routes.module.scss";
-
+import { storage } from "@/core/services";
 import { useNavigate } from "react-router-dom";
 import { useRoutes } from "@/modules/routes/hooks";
 
-import { storage } from "@/core/services";
+import { Title } from "@/components/Title";
+import * as Cards from "@/components/Cards/";
 import { Page } from "@/components/Page/Page";
-import Title from "@/components/Title/Title";
-import Card from "@/components/Cards/RoutesCard/RoutesCard";
+
+// styles
+import styles from "./Routes.module.scss";
 
 const PassengerRoutes = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const PassengerRoutes = () => {
       <Title>Safar yo'nalishini tanlang</Title>
       <div className={styles.card_wrapper}>
         {routes?.map((item) => (
-          <Card
+          <Cards.RoutesCard
             id={item.id}
             key={item.id}
             start={item.start}

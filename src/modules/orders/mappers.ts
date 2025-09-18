@@ -15,7 +15,7 @@ export const PassengerOrders = (item?: any): Types.IEntity.MyOrders => ({
   isDelivery: get(item, "is_delivery", false),
   extraLuggage: get(item, "extra_luggage", ""),
   isCashbackUsed: get(item, "is_cashback_used", false),
-  cashbackUsedPercent: get(item, "cashback_used_percent", 0),
+  cashbackUsed: get(item, "cashback_used", 0),
   paymentType: get(item, "payment_type", ""),
   carType: get(item, "car_type", ""),
   passenger: get(item, "passenger"),

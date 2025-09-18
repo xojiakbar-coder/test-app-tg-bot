@@ -16,14 +16,7 @@ const Archive = () => {
       <div className={styles.completed_orders_content}>
         {completedRides?.length > 0 ? (
           completedRides.map((item) => (
-            <>
-              <DriverRideCard key={item.id} data={item} />
-              <DriverRideCard key={item.id} data={item} />
-              <DriverRideCard key={item.id} data={item} />
-              <DriverRideCard key={item.id} data={item} />
-              <DriverRideCard key={item.id} data={item} />
-              <DriverRideCard key={item.id} data={item} />
-            </>
+            <DriverRideCard key={item.id} data={item} />
           ))
         ) : (
           <div className={styles.empty_icon_wrapper}>
