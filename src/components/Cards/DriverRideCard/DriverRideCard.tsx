@@ -52,27 +52,38 @@ const DriverRideCard = ({
       ) : null}
 
       {data.bookings.length > 0 &&
-        data.bookings.map((item: Types.IEntity.Bookings) => (
-          <div className={styles.driverSection} key={item.id}>
-            <p>
-              <strong>Yo‘lovchi:</strong> {item.passenger.fullName}
-            </p>
-            <>
+        data.bookings.map((item: Types.IEntity.Bookings) => {
+          return (
+            <div className={styles.driverSection} key={item.id}>
               <p>
-                <strong>To‘lo‘v turi:</strong>{" "}
-                {item.paymentType === "Cash" ? "Naqd pul" : "Kartadan"}
+                <strong>Yo‘lovchi:</strong> {item.passenger.fullName}
               </p>
-              <p>
-                <strong>Telefon raqami:</strong> {item.passenger.phoneNumber}
-              </p>
-              {item.ridePrice !== null && item.ridePrice !== "" && (
+              <>
                 <p>
-                  <strong>To‘lo‘v miqdori:</strong> {item.ridePrice}
+                  <strong>To‘lo‘v turi:</strong>{" "}
+                  {item.paymentType === "Cash" ? "Naqd pul" : "Kartadan"}
                 </p>
-              )}
-            </>
-          </div>
-        ))}
+                <p>
+                  <strong>Telefon raqami:</strong> {item.passenger.phoneNumber}
+                </p>
+                <p>
+                  <strong>Cashback miqdori:</strong> {item.cashbackUsed}
+                </p>
+                {item.ridePrice !== null && item.ridePrice !== "" && (
+                  <>
+                    <p>
+                      <strong>To‘lo‘v miqdori:</strong> {item.ridePrice}
+                    </p>
+                    <p>
+                      <strong>Umumiy to‘lo‘v miqdori:</strong>{" "}
+                      {(+item.ridePrice * item.cashbackUsed) / 100}
+                    </p>
+                  </>
+                )}
+              </>
+            </div>
+          );
+        })}
 
       <Flex direction="column" gap={8}>
         {!data.isCompleted && (

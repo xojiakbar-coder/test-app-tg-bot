@@ -9,7 +9,7 @@ export const Passenger = (src?: any): Types.IEntity.Passenger => ({
   phoneNumber: get(src, "phone_number", ""),
   telegramId: get(src, "telegram_id", ""),
   promoCode: get(src, "promo_code", ""),
-  cashbackPercentage: get(src, "cashback_percentage", 0),
+  cashbackUsed: get(src, "cashback_used", 0),
   cashbackAmount: get(src, "cashback_amount", 0),
 });
 
@@ -23,7 +23,7 @@ export const Bookings = (src?: any): Types.IEntity.Bookings => ({
   isDelivery: get(src, "is_delivery", false),
   ridePrice: get(src, "ride_price", ""),
   isCashbackUsed: get(src, "is_cashback_used", 0),
-  cashbackUsedPercent: get(src, "cashback_used_percent", 0),
+  cashbackUsed: get(src, "cashback_used", 0),
   paymentType: get(src, "payment_type", ""),
   dateOfDeparture: get(src, "date_of_departure", ""),
   carType: get(src, "car_type", ""),

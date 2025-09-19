@@ -68,7 +68,7 @@ export declare namespace IEntity {
     phoneNumber: string;
     telegramId: string;
     promoCode: string;
-    cashbackPercentage: number;
+    cashbackUsed: number;
     cashbackAmount: number;
   }
 
@@ -82,7 +82,7 @@ export declare namespace IEntity {
     isDelivery: boolean;
     ridePrice: string;
     isCashbackUsed: number;
-    cashbackUsedPercent: number;
+    cashbackUsed: number;
     paymentType: string;
     dateOfDeparture: string;
     carType: string;
