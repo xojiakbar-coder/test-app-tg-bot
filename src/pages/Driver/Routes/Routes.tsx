@@ -89,10 +89,7 @@ const DriverRoutes = () => {
             </div>
 
             <Button
-              height={40}
-              color="red"
-              w="max-content"
-              variant="outline"
+              variant="danger-out"
               className={styles.remove_btn}
               disabled={selectedItem == null}
               onClick={() => setSelectItem(null)}
@@ -102,10 +99,10 @@ const DriverRoutes = () => {
           </div>
 
           <Button
-            height={46}
-            type="button"
+            full
+            effective
+            htmlType="button"
             onClick={onSubmit}
-            className={styles.button}
             disabled={selectedItem === null || isPending}
           >
             {isPending ? "Qo‘shilmoqda..." : "Navbatga Qo‘shish"}

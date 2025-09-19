@@ -19,13 +19,7 @@ const NewOrder = () => {
           return (
             <>
               <Form />
-              <Button
-                type="submit"
-                variant="filled"
-                height={46}
-                disabled={isLoading}
-                className={styles.submit_button}
-              >
+              <Button full effective htmlType="submit" disabled={isLoading}>
                 {isLoading ? "Yuborilmoqda..." : "Buyurtma berish"}
               </Button>
             </>

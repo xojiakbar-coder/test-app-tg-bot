@@ -3,9 +3,10 @@ import { Button } from "@/components/Button";
 import styles from "./Driver.module.scss";
 
 import Form from "./components/Form";
-import CreateForm from "@/modules/driver/forms/Create";
-import { message } from "@/components/Message";
 import Page from "@/components/Page";
+
+import { message } from "@/components/Message";
+import CreateForm from "@/modules/driver/forms/Create";
 
 const DriverChangeTariff = () => {
   return (
@@ -21,13 +22,7 @@ const DriverChangeTariff = () => {
               return (
                 <>
                   <Form />
-                  <Button
-                    type="submit"
-                    variant="filled"
-                    h={46}
-                    disabled={isLoading}
-                    className={styles.submit_button}
-                  >
+                  <Button full effective htmlType="submit" disabled={isLoading}>
                     {isLoading ? "Yuborilmoqda..." : "Yuborish"}
                   </Button>
                 </>

@@ -17,7 +17,13 @@ const PassengerOrders = () => {
   if (isLoading && isFetched) return <Spinner />;
 
   if (!isLoading && activeRides.length === 0)
-    return <Placeholder internalLink="/" title="Hozircha safarlar yo‘q" />;
+    return (
+      <Placeholder
+        internalLink="/"
+        title="Hozircha safarlar yo‘q"
+        buttonContent="Yangi safar buyurtma berish"
+      />
+    );
 
   return (
     <div className={styles.container}>

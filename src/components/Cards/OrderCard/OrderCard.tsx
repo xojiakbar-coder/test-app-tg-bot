@@ -3,8 +3,10 @@ import * as Types from "@/modules/orders/types";
 import dayjs from "dayjs";
 import { useState } from "react";
 
+import { Badge, Flex } from "@mantine/core";
+
 import styles from "./OrderCard.module.scss";
-import { Badge, Button, Flex } from "@mantine/core";
+import { Button } from "@/components/Button";
 
 const OrderCard = ({
   data,
@@ -16,8 +18,10 @@ const OrderCard = ({
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const handleDeleteItem = (id: number) => {
-    setDeletingId(id);
-    mutation({ id });
+    if (window.confirm("Are you sure")) {
+      setDeletingId(id);
+      mutation({ id });
+    }
   };
 
   return (
@@ -90,20 +94,17 @@ const OrderCard = ({
           </>
         </div>
       )}
-      <Flex justify="flex-end" gap={7}>
-        <Button
-          h={42}
-          mt="lg"
-          size="sm"
-          color="red"
-          w="max-content"
-          loading={deletingId === +data.id}
-          disabled={deletingId === +data.id}
-          onClick={() => handleDeleteItem(+data.id)}
-        >
-          Buyurtmani bekor qilish
-        </Button>
-      </Flex>
+
+      <Button
+        full
+        mt="lg"
+        variant="danger"
+        loading={deletingId === +data.id}
+        disabled={deletingId === +data.id}
+        onClick={() => handleDeleteItem(+data.id)}
+      >
+        Buyurtmani bekor qilish
+      </Button>
     </div>
   );
 };

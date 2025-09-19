@@ -1,7 +1,9 @@
 import { useState } from "react";
 import * as Types from "@/modules/driver/types";
 
-import { Badge, Button, Flex } from "@mantine/core";
+import { Badge, Flex, Text } from "@mantine/core";
+import { Button } from "@/components/Button";
+
 import { useCompleteRide } from "@/modules/driver/hooks";
 
 // styles
@@ -11,7 +13,9 @@ import styles from "./DriverRideCard.module.scss";
 const DriverRideCard = ({
   data,
   mutation,
+  isPending,
 }: {
+  isPending: boolean;
   data: Types.IEntity.RecentRide;
   mutation?: (params: { rideId: number }) => void;
 }) => {
@@ -19,8 +23,10 @@ const DriverRideCard = ({
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const handleDeleteItem = (id: number) => {
-    setDeletingId(id);
-    if (mutation) mutation({ rideId: id });
+    if (window.confirm("Are you sure?")) {
+      setDeletingId(id);
+      if (mutation) mutation({ rideId: id });
+    }
   };
 
   return (
@@ -29,21 +35,21 @@ const DriverRideCard = ({
         <h3 className={styles.title}>Buyurtma ID: {data.id}</h3>
         {data !== null && data.driver && (
           <Badge
-            color={data.isCompleted ? "orange" : "green"}
+            color={data.isCompleted ? "orange" : "teal"}
             className={styles.badge}
           >
-            {data.isCompleted ? "Bajarilgan" : "Aktiv"}
+            {data.isCompleted ? "Bajarilgan" : "Faol"}
           </Badge>
         )}
       </div>
-      <p>
-        <strong>Yaratilgan:</strong> {data.createdAt}
-      </p>
       <p>
         <strong>Jo‘nash manzili:</strong> {data.route.start.name}
       </p>
       <p>
         <strong>Borish manzili:</strong> {data.route.finish.name}
+      </p>
+      <p>
+        <strong>Yaratilgan:</strong> {data.createdAt}
       </p>
       {data.bookings.length ? (
         <p>
@@ -66,17 +72,19 @@ const DriverRideCard = ({
                 <p>
                   <strong>Telefon raqami:</strong> {item.passenger.phoneNumber}
                 </p>
-                <p>
-                  <strong>Cashback miqdori:</strong> {item.cashbackUsed}
-                </p>
                 {item.ridePrice !== null && item.ridePrice !== "" && (
                   <>
                     <p>
-                      <strong>To‘lo‘v miqdori:</strong> {item.ridePrice}
+                      <strong>Xizmat narxi:</strong> {item.ridePrice}
                     </p>
-                    <p>
-                      <strong>Umumiy to‘lo‘v miqdori:</strong>{" "}
-                      {(+item.ridePrice * item.cashbackUsed) / 100}
+                    {item.cashbackUsed && (
+                      <p>
+                        <strong>Keshbekdan:</strong> {`${item.cashbackUsed}%`}
+                      </p>
+                    )}
+                    <p className={styles.price}>
+                      <strong>To‘lo‘v miqdori:</strong>{" "}
+                      {`${(+item.ridePrice * item.cashbackUsed) / 100} so‘m`}
                     </p>
                   </>
                 )}
@@ -85,31 +93,25 @@ const DriverRideCard = ({
           );
         })}
 
-      <Flex direction="column" gap={8}>
+      <Flex align="center" mt="md" justify="space-between" gap={8}>
         {!data.isCompleted && (
           <Button
-            h={42}
-            mt="lg"
-            size="sm"
-            color="red"
-            w="max-content"
+            variant="danger"
             loading={deletingId === +data.id}
             disabled={deletingId === +data.id}
             onClick={() => handleDeleteItem(+data.id)}
+            full={data.bookings.length < 0 ? false : true}
           >
-            Navbatni bekor qilish
+            Bekor qilish
           </Button>
         )}
-
         {data.bookings.length > 0 && !data.isCompleted ? (
           <Button
-            h={42}
-            size="sm"
-            color="teal"
-            w="max-content"
-            loading={!data.id}
+            variant="success"
+            loading={isPending}
+            disabled={isPending}
+            full={!data.isCompleted}
             onClick={() => mutate()}
-            disabled={data.isCompleted}
           >
             Safarni yakunlash
           </Button>

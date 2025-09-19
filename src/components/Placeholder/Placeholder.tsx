@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "../Button";
 import { Text } from "@mantine/core";
 import { IconInbox } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +6,7 @@ import type { TablerIcon } from "@tabler/icons-react";
 
 // styles
 import styles from "./Placeholder.module.scss";
+import { Button } from "../Button";
 
 interface IProps {
   title: string;
@@ -20,7 +20,7 @@ interface IProps {
   buttonOnClick?: () => void;
 }
 
-const EmptyPage: React.FC<IProps> = ({
+const Placeholder: React.FC<IProps> = ({
   title,
   subtitle,
   icon: Icon,
@@ -52,33 +52,21 @@ const EmptyPage: React.FC<IProps> = ({
       )}
 
       {buttonContent && !externalLink && !internalLink && (
-        <Button
-          variant="primary"
-          onClick={buttonOnClick}
-          className={styles.button}
-        >
+        <Button size="sm" onClick={buttonOnClick}>
           {buttonContent}
         </Button>
       )}
 
       {buttonContent && externalLink && !internalLink && (
         <a href={externalLink} target="_blank" rel="noopener noreferrer">
-          <Button
-            variant="primary"
-            onClick={buttonOnClick}
-            className={styles.button}
-          >
+          <Button size="sm" onClick={buttonOnClick}>
             {buttonContent}
           </Button>
         </a>
       )}
 
       {buttonContent && internalLink && !externalLink && (
-        <Button
-          variant="primary"
-          onClick={() => navigate(internalLink)}
-          className={styles.button}
-        >
+        <Button size="sm" onClick={() => navigate(internalLink)}>
           {buttonContent}
         </Button>
       )}
@@ -86,4 +74,4 @@ const EmptyPage: React.FC<IProps> = ({
   );
 };
 
-export default EmptyPage;
+export default Placeholder;

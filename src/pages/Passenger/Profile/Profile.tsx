@@ -3,8 +3,8 @@ import styles from "./Profile.module.scss";
 import { Avatar } from "@mantine/core";
 import { Button } from "@/components/Button";
 
+import { Spinner } from "@/components/Spinner";
 import { DataCard } from "@/components/Cards/DataCard";
-import SpinnerLoader from "@/components/Spinner/Spinner";
 
 import { usePassenger } from "@/modules/passenger/hooks";
 import { storage } from "@/core/services";
@@ -13,7 +13,7 @@ const PassengerProfile = () => {
   const { photoUrl } = storage.local.get("user");
   const { data, isLoading } = usePassenger();
 
-  if (isLoading) return <SpinnerLoader />;
+  if (isLoading) return <Spinner />;
 
   return (
     <div className={styles.container}>
@@ -33,7 +33,7 @@ const PassengerProfile = () => {
         className={styles.cashbackShare}
         href={`https://t.me/share/url?url=https://t.me/pitakuzrobot?start=${data?.item?.promoCode}&text=Link ustiga bosing va mening promokodim orqali cashback oling`}
       >
-        <Button variant="filled" className={styles.shareButton} h={44}>
+        <Button size="sm" variant="light">
           Do'stga promokod ulashish
         </Button>
       </a>

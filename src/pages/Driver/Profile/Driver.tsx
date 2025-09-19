@@ -54,22 +54,14 @@ const Driver = () => {
             href="https://t.me/murodov_azizmurod"
             className={styles.contact_us}
           >
-            <Button
-              h={44}
-              className={styles.button}
-              leftSection={<Icons.IconPhoneCall size={16} />}
-              gradient={{ from: "indigo", to: "blue", deg: 90 }}
-            >
+            <Button leftSection={<Icons.IconPhoneCall size={16} />}>
               Bog‘lanish
             </Button>
           </a>
 
           <Button
-            h={44}
-            className={styles.button}
-            leftSection={<Icons.IconPlus size={20} />}
+            leftSection={<Icons.IconReplace size={16} />}
             onClick={() => navigate("/driver-change-tariff")}
-            gradient={{ from: "indigo", to: "violet", deg: 90 }}
           >
             {driver?.currentTariff
               ? "Tarifni almashtirish"
