@@ -1,5 +1,5 @@
 import Root from "@/router";
-import { Suspense, useMemo } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { AppRoot } from "@telegram-apps/telegram-ui";
 import { ErrorBoundary } from "@/components/ErrorBoundary.tsx";
 
@@ -7,6 +7,7 @@ import * as RouterDom from "react-router-dom";
 import * as TelegramAppSdk from "@telegram-apps/sdk-react";
 import { Spinner } from "./components/Spinner";
 import * as UserContext from "@/core/context/User";
+import { useDriverCheck } from "@/modules/driver/hooks";
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
@@ -26,8 +27,20 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
 }
 
 export function App() {
+  const { isLoading, isFetched } = useDriverCheck();
   const lp = useMemo(() => TelegramAppSdk.retrieveLaunchParams(), []);
   const isDark = TelegramAppSdk.useSignal(TelegramAppSdk.isMiniAppDark);
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isLoaded && !isLoading && !isFetched) setIsLoaded(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <ErrorBoundary fallback={ErrorBoundaryError}>
       <AppRoot
@@ -38,10 +51,9 @@ export function App() {
       >
         <UserContext.Provider>
           <Suspense fallback={<Spinner />}>
-            <Root />
+            {isLoaded ? <Root /> : <Spinner />}
           </Suspense>
         </UserContext.Provider>
-        {/* <ConfigContext.Provider value={ConfigContext.useContext()}></ConfigContext.Provider> */}
       </AppRoot>
     </ErrorBoundary>
   );

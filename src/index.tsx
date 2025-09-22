@@ -100,7 +100,7 @@ try {
         <BrowserRouter>
           <QueryClientProvider client={queryClient}>
             <MantineProvider>
-              <Notifications />
+              <Notifications autoClose={2000} />
               <App />
             </MantineProvider>
           </QueryClientProvider>

@@ -24,10 +24,8 @@ const DriverRideCard = ({
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const handleDeleteItem = (id: number) => {
-    if (window.confirm("Are you sure?")) {
-      setDeletingId(id);
-      if (mutation) mutation({ rideId: id });
-    }
+    setDeletingId(id);
+    if (mutation) mutation({ rideId: id });
   };
 
   return (

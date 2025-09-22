@@ -18,10 +18,8 @@ const OrderCard = ({
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const handleDeleteItem = (id: number) => {
-    if (window.confirm("Are you sure")) {
-      setDeletingId(id);
-      mutation({ id });
-    }
+    setDeletingId(id);
+    mutation({ id });
   };
 
   return (

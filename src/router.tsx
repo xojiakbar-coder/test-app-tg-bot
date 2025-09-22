@@ -23,10 +23,7 @@ import { useDriverCheck } from "@/modules/driver/hooks";
 const Root = () => {
   const {
     data: { role },
-    isLoading,
   } = useDriverCheck();
-
-  if (isLoading) return <Spinner />;
 
   const routes: RouteObject[] = [
     {

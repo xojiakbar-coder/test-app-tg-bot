@@ -8,10 +8,14 @@ const RoutesCard = ({
   start,
   finish,
   onClick,
+  active = false,
   className = "",
 }: Types.IEntity.RoutesCardProps) => {
   return (
-    <div onClick={onClick} className={clsx(styles.routes_card, className)}>
+    <div
+      onClick={onClick}
+      className={clsx(styles.routes_card, className, active && styles.active)}
+    >
       {/* Start Location */}
       <div className={styles.start_location}>
         <span>Jo‘nash manzili</span>

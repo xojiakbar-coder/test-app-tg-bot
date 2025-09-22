@@ -17,7 +17,7 @@ function info(arg: Types.IUse.SingleProps | Types.IUse.INotification) {
     title: values.title,
     message: values.message,
     position: values.position || 'top-center',
-    autoClose: values.autoClose || 5000,
+    autoClose: values.autoClose || 2000,
     icon: <Icons.IconExclamationMark className={styles.notify_icon} />,
     withCloseButton: values.withCloseButton ?? false,
     classNames: {

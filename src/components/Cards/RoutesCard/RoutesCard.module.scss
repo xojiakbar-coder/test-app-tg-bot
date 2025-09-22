@@ -20,19 +20,21 @@
     rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
     rgba(0, 0, 0, 0.07) 0px 16px 16px;
 
-  &:hover {
-    background: linear-gradient(
-      160deg,
-      rgb(247, 234, 139) 0%,
-      rgb(253, 219, 48) 82%,
-      rgb(249, 214, 13) 100%
-    );
-  }
-
   @media (min-width: 640px) {
     flex-direction: row;
     justify-content: space-between;
   }
+}
+
+.active {
+  box-shadow: none;
+  background: linear-gradient(
+    160deg,
+    rgb(230, 218, 130) 0%,
+    rgb(228, 197, 43) 82%,
+    rgb(232, 199, 12) 100%
+  );
+  // border: 1px solid red;
 }
 
 .start_location,

@@ -19,6 +19,7 @@ export declare namespace IEntity {
   }
 
   export interface RoutesCardProps extends Routes {
+    active?: boolean;
     className?: string;
     onClick: () => void;
   }

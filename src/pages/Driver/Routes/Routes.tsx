@@ -1,109 +1,86 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useRoutes } from "@/modules/routes/hooks";
 import { useCreateRide, useDriver } from "@/modules/driver/hooks";
 
 import * as Cards from "@/components/Cards";
-import * as Icons from "@tabler/icons-react";
 
+import { Input } from "@mantine/core";
 import { Title } from "@/components/Title";
 import { Button } from "@/components/Button";
-import { Placeholder } from "@/components/Placeholder";
+import { Spinner } from "@/components/Spinner";
+import { message } from "@/components/Message";
 
 // styles
 import styles from "./Routes.module.scss";
-import { storage } from "@/core/services";
-import { Spinner } from "@/components/Spinner";
 
 const DriverRoutes = () => {
-  const [selectedItem, setSelectItem] = useState<number | null>(null);
-
-  const { driver, isLoading } = useDriver();
-  const { routes } = useRoutes();
-
+  const [item, setItem] = useState<number | null>(null);
+  const { driver, isLoading: isDriverLoading } = useDriver();
+  const { routes: route, isLoading: isRoutesLoading } = useRoutes();
   const { mutate, isPending } = useCreateRide();
 
-  const activeRide = driver?.recentRides.find(
-    (item) => item.isCompleted === false
-  );
+  const routeItem = route.find((v) => v.id === item);
+  const active = driver?.recentRides?.find((item) => !item.isCompleted);
 
   const onSubmit = () => {
-    if (driver?.id && selectedItem !== null) {
+    if (!!active) {
+      message.warning({ title: "Sizda faol navbat mavjud", autoClose: 1700 });
+    }
+
+    if (driver?.id && item !== null && !active && routeItem) {
       mutate({
         driverId: driver.id.toString(),
-        routeId: routes[selectedItem].id,
+        routeId: routeItem.id,
       });
     }
   };
 
-  useEffect(() => {
-    console.log(driver);
-  }, [driver]);
+  // console.log(route);
 
-  if (isLoading || driver.id === 0) return <Spinner />;
-
-  if (activeRide && storage.local.get("driver") !== undefined) {
-    return (
-      <Placeholder
-        icon={Icons.IconInfoCircle}
-        title="Siz allaqachon aktiv navbatdasiz"
-      />
-    );
-  }
+  if (isDriverLoading || isRoutesLoading) return <Spinner />;
 
   return (
     <div className={styles.container}>
       <Title>Yo‘nalishlar tanlang</Title>
+
       <div className={styles.card_wrapper}>
-        {routes.map((item, index) => (
-          <Cards.RoutesCard
-            key={item.id}
-            id={item.id}
-            start={item.start}
-            finish={item.finish}
-            onClick={() => setSelectItem(index)}
-            className={
-              selectedItem !== null && routes[selectedItem].id === item.id
-                ? styles.selected
-                : ""
-            }
-          />
-        ))}
+        {route.map((v) => {
+          return (
+            <Cards.RoutesCard
+              id={v.id}
+              key={v.id}
+              start={v.start}
+              finish={v.finish}
+              onClick={() => setItem(v.id)}
+              active={!!item && routeItem?.id === v.id}
+            />
+          );
+        })}
       </div>
 
-      {routes.length > 0 && (
+      {route.length > 0 && (
         <>
-          <div className={styles.selected_text_wrapper}>
-            <div
-              className={`${styles.selected_location} ${
-                selectedItem !== null &&
-                routes[selectedItem] &&
-                styles.selected_location_active
-              }`}
-            >
-              <Icons.IconNavigation />
-              <b className={styles.selected_location_label}>Yo‘nalish:</b>
-              {selectedItem !== null && routes[selectedItem]
-                ? `${routes[selectedItem].start.name} - ${routes[selectedItem].finish.name}`
-                : "Tanlanmagan"}
-            </div>
-
-            <Button
-              variant="danger-out"
-              className={styles.remove_btn}
-              disabled={selectedItem == null}
-              onClick={() => setSelectItem(null)}
-            >
-              Olib tashlash
-            </Button>
-          </div>
+          <Input
+            readOnly
+            value={
+              !!item && !!routeItem?.id
+                ? `${routeItem?.start.name} - ${routeItem?.finish.name}`
+                : ""
+            }
+            placeholder="Tanlanmagan"
+            rightSectionPointerEvents="auto"
+            className={styles.selected_location}
+            rightSection={
+              !!item && <Input.ClearButton onClick={() => setItem(null)} />
+            }
+          />
 
           <Button
             full
-            effective
-            htmlType="button"
             onClick={onSubmit}
-            disabled={selectedItem === null || isPending}
+            loading={isPending}
+            disabled={item === null || isPending}
           >
             {isPending ? "Qo‘shilmoqda..." : "Navbatga Qo‘shish"}
           </Button>
@@ -112,4 +89,5 @@ const DriverRoutes = () => {
     </div>
   );
 };
+
 export default DriverRoutes;
