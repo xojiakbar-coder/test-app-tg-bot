@@ -11,8 +11,6 @@ const SubMenu = () => {
     data: { isDriver: driver },
   } = useDriverCheck();
 
-  console.log(driver);
-
   const navItems = driver
     ? SubMenuNavigation.driver_nav
     : SubMenuNavigation.passenger_nav;

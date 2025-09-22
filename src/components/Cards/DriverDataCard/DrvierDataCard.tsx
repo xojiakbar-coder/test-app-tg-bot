@@ -16,7 +16,7 @@ const DrvierDataCard = ({ data }: { data: Types.IEntity.Driver }) => {
     <div className={styles.outer_container}>
       {data.currentTariff !== null && (
         <div className={styles.card}>
-          <Stack gap={8}>
+          <Stack gap={4}>
             <div className={styles.header}>
               <Box className={`${styles.icon_wrapper} ${styles["indigo"]}`}>
                 <IconCalendarCheck className={styles.icon} color={"indigo"} />
@@ -25,19 +25,19 @@ const DrvierDataCard = ({ data }: { data: Types.IEntity.Driver }) => {
                 Faol tarif ma'lumotlari
               </Text>
             </div>
-            <Flex direction="column">
+            <Flex direction="column" gap={0}>
               <Flex justify="space-between">
-                <Group gap={7}>
+                <Group gap={6}>
                   <Text className={styles.label}>Nomi:</Text>
                   <Text className={styles.value}>
                     {data?.currentTariff.selectedTariff.name}
                   </Text>
                 </Group>
                 <Badge color="teal" mt={"8.3px"} className={styles.badge_label}>
-                  Aktiv
+                  Faol
                 </Badge>
               </Flex>
-              <Group gap={7}>
+              <Group gap={6}>
                 <Text className={styles.label}>Muddati:</Text>
                 <Text className={styles.value}>
                   {`${dayjs(data.currentTariff.tariffEnd).diff(
@@ -46,11 +46,11 @@ const DrvierDataCard = ({ data }: { data: Types.IEntity.Driver }) => {
                   )} kun qoldi`}
                 </Text>
               </Group>
-              <Group gap={7}>
+              <Group gap={4}>
                 <Text className={styles.label}>Safarlar soni:</Text>
                 <Text className={styles.value}>{data?.rideLimit}</Text>
               </Group>
-              <Group gap={7}>
+              <Group gap={6}>
                 <Text className={styles.label}>Balance:</Text>
                 <Text className={styles.value}>{data?.balance}</Text>
               </Group>

@@ -10,8 +10,10 @@ import dayjs from "dayjs";
 import * as yup from "yup";
 import * as Api from "../api";
 import * as Types from "../types";
+import { useEffect } from "react";
 import * as Mappers from "../mappers";
 import { storage } from "@/core/services";
+import { usePassenger } from "@/modules/passenger/hooks";
 
 interface FormValues extends Types.IForm.Create {}
 
@@ -26,6 +28,7 @@ interface IProps {
   onSettled?: () => void;
   onSuccess?: (value: Types.IEntity.Order) => void;
 }
+// ... qolgan importlar
 
 const Create: React.FC<IProps> = ({
   children,
@@ -38,6 +41,9 @@ const Create: React.FC<IProps> = ({
   const { id } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const {
+    data: { item },
+  } = usePassenger();
 
   const mutation = useMutation<Types.IEntity.Order, string, FormValues, any>({
     mutationFn: async (values: FormValues) => {
@@ -49,7 +55,7 @@ const Create: React.FC<IProps> = ({
       navigate("/passenger-orders");
       queryClient.invalidateQueries({
         predicate: (query) =>
-          query.queryKey[0] === "routes" && query.queryKey[1] === "list",
+          query.queryKey[0] === "booking" && query.queryKey[1] === "single",
       });
     },
     onError,
@@ -102,6 +108,21 @@ const Create: React.FC<IProps> = ({
     },
     resolver: yupResolver<FormValues, any, FormValues>(validationSchema),
   });
+
+  const { watch, setValue } = form;
+
+  // 👇 isCashbackUsed o‘zgarishini kuzatamiz
+  const isCashbackUsed = watch("isCashbackUsed");
+
+  useEffect(() => {
+    if (isCashbackUsed) {
+      // agar true bo‘lsa passenger cashbackAmount ni qo‘yib beradi
+      setValue("cashbackUsed", item?.cashbackAmount ?? 0);
+    } else {
+      // aks holda 0 yoki bosh holatga qaytarish
+      setValue("cashbackUsed", 0);
+    }
+  }, [isCashbackUsed, item, setValue]);
 
   const onSubmit = form.handleSubmit((values) => {
     mutation.mutate(values, {

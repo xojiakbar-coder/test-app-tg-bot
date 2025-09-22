@@ -15,7 +15,7 @@ export declare namespace IEntity {
     route: RoutesType.IEntity.Routes;
     createdAt: string;
     updatedAt: string;
-    ridePrice: string | null;
+    ridePrice: string;
     frontSeat: boolean;
     isDelivery: boolean;
     dateOfDeparture: string;

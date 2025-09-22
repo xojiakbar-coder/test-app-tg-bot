@@ -37,6 +37,16 @@ p {
   }
 }
 
+p.price {
+  color: rgb(6, 121, 104);
+  font-size: 16px !important;
+  margin-top: 12px;
+
+  strong {
+    font-size: 16px;
+  }
+}
+
 .driverSection {
   margin-top: 12px;
   padding-top: 10px;

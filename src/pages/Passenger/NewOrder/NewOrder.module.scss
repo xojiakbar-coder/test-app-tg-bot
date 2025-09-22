@@ -16,7 +16,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  gap: 30px;
+  gap: 20px;
 
   &__checkbox {
     color: #fff !important;
@@ -146,24 +146,7 @@
   color: #fff;
 }
 
-.description {
-  margin-top: 8px;
-  color: var(--mantine-color-dimmed);
-  font-size: var(--mantine-font-size-xs);
-}
-
-.cashback_mount {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 5px;
-}
-
 :global {
-  .mantine-DatePickerInput-calendarHeader {
-    color: #000;
-  }
-
   .mantine-RadioGroup-error {
     margin-top: 5px;
   }
@@ -175,8 +158,19 @@
   .mantine-Input-input {
     color: #333537;
   }
+}
 
-  .mantine-Chip-label {
-    font-size: 12px;
+.date_field_pl {
+  font-size: 14px;
+}
+
+.chip_label {
+  font-size: 12px;
+  color: white !important;
+  user-select: none !important;
+  background: rgb(152, 152, 147) !important;
+
+  &[data-checked="true"] {
+    background: rgb(18, 144, 104) !important;
   }
 }

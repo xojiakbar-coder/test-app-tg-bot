@@ -24,7 +24,7 @@
 .inner {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 14px;
   width: 100%;
 }
 
@@ -35,8 +35,9 @@
 }
 
 .name {
-  font-size: 1.25rem;
+  color: #000;
   font-weight: 600;
+  font-size: 1.25rem;
 }
 
 .sectionTitle {

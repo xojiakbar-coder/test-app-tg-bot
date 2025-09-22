@@ -1,7 +1,7 @@
 .card {
   padding: 20px;
   border-radius: 12px;
-  background-color: #ffffff;
+  background-color: #f2fcfe;
   border: 1px solid #e0e0e0;
   height: max-content !important;
   transition: box-shadow 0.3s ease;
@@ -29,6 +29,16 @@ p {
   strong {
     color: #2c3e50;
     margin-right: 4px;
+  }
+}
+
+p.price {
+  color: rgb(6, 121, 104);
+  font-size: 16px !important;
+  margin-top: 12px;
+
+  strong {
+    font-size: 16px;
   }
 }
 

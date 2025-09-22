@@ -9,7 +9,7 @@ export const PassengerOrders = (item?: any): Types.IEntity.MyOrders => ({
   route: Route(get(item, "route", {})),
   createdAt: get(item, "created_at", ""),
   updatedAt: get(item, "updated_at", ""),
-  ridePrice: get(item, "updated_at", ""),
+  ridePrice: get(item, "ride_price", ""),
   frontSeat: get(item, "front_seat", false),
   dateOfDeparture: get(item, "date_of_departure", ""),
   isDelivery: get(item, "is_delivery", false),

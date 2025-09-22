@@ -29,8 +29,8 @@ const OrderCard = ({
       <div className={styles.top_content_wrapper}>
         <h3 className={styles.title}>Buyurtma ID: {data.id}</h3>
         {data.relatedRide !== null && !data.relatedRide.isCompleted && (
-          <Badge color="green" className={styles.badge}>
-            Aktiv
+          <Badge color="teal" className={styles.badge}>
+            FAOL
           </Badge>
         )}
       </div>
@@ -87,10 +87,20 @@ const OrderCard = ({
               <strong>Mashina turi:</strong>{" "}
               {data.relatedRide.driver.carModelName}
             </p>
-            <p>
-              <strong>Telefon raqami:</strong>{" "}
-              {data.relatedRide.driver?.phoneNumber}
-            </p>
+            {data.ridePrice !== null && data.ridePrice !== "" && (
+              <>
+                <p>
+                  <strong>Xizmat narxi:</strong> {data.ridePrice}
+                </p>
+                <p>
+                  <strong>Keshbekdan:</strong> {data.cashbackUsed}
+                </p>
+                <p className={styles.price}>
+                  <strong>To‘lov miqdori:</strong>{" "}
+                  {+data.ridePrice - data.cashbackUsed}
+                </p>
+              </>
+            )}
           </>
         </div>
       )}

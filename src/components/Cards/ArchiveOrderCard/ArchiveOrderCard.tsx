@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 
 import cx from "clsx";
 import styles from "./ArchiveOrderCard.module.scss";
+import { Badge } from "@mantine/core";
 
 const ArchiveOrderCard = ({ data }: { data: Types.IEntity.MyOrders }) => {
   return (
@@ -15,6 +16,10 @@ const ArchiveOrderCard = ({ data }: { data: Types.IEntity.MyOrders }) => {
     >
       <div className={styles.top_content_wrapper}>
         <h3 className={styles.title}>Buyurtma ID: {data.id}</h3>
+
+        <Badge color={"orange"} className={styles.badge}>
+          Bajarilgan
+        </Badge>
       </div>
       <p>
         <strong>Yaratilgan:</strong>{" "}
@@ -69,10 +74,20 @@ const ArchiveOrderCard = ({ data }: { data: Types.IEntity.MyOrders }) => {
               <strong>Mashina turi:</strong>{" "}
               {data.relatedRide.driver.carModelName}
             </p>
-            <p>
-              <strong>Telefon raqami:</strong>{" "}
-              {data.relatedRide.driver?.phoneNumber}
-            </p>
+            {data.ridePrice !== null && data.ridePrice !== "" && (
+              <>
+                <p>
+                  <strong>Xizmat narxi:</strong> {data.ridePrice}
+                </p>
+                <p>
+                  <strong>Keshbekdan:</strong> {data.cashbackUsed}
+                </p>
+                <p className={styles.price}>
+                  <strong>To‘lov miqdori:</strong>{" "}
+                  {+data.ridePrice - data.cashbackUsed}
+                </p>
+              </>
+            )}
           </>
         </div>
       )}

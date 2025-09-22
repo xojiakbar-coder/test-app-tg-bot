@@ -4,25 +4,22 @@ import * as Fields from "@/containers/Fields";
 
 import { usePassenger } from "@/modules/passenger/hooks";
 
-import { Input, Space, Badge } from "@mantine/core";
+import { Space } from "@mantine/core";
 import { PaymentCard } from "@/components/Cards/PaymentCard";
 import { CarTypeCard } from "@/components/Cards/CarTypeCard";
 
 const Form = () => {
-  const {
-    data: { item },
-  } = usePassenger();
-
   return (
     <>
       <Fields.DateTimePickerInput
         withAsterisk
         name="dateOfDeparture"
         label="Jo‘nash sanasi"
+        classNames={{ placeholder: styles.date_field_pl }}
         placeholder="Jo‘nash sanasini belgilang"
       />
 
-      <Space h="lg" />
+      <Space h="md" />
 
       <Fields.TimeInput
         withAsterisk
@@ -31,19 +28,19 @@ const Form = () => {
         placeholder="Jo‘nash vaqtini belgilang"
       />
 
-      <Space h="lg" />
+      <Space h="md" />
 
       <Fields.RadioGroup name="carType" label="Mashina turi:" withAsterisk>
         <CarTypeCard />
       </Fields.RadioGroup>
 
-      <Space h="lg" />
+      <Space h="md" />
 
       <Fields.RadioGroup name="paymentType" label="To‘lov turi:" withAsterisk>
         <PaymentCard />
       </Fields.RadioGroup>
 
-      <Space h="lg" />
+      <Space h="md" />
 
       <Fields.Text
         name="extraLuggage"
@@ -51,33 +48,21 @@ const Form = () => {
         placeholder="Qo‘shimcha yuk haqida yozing"
       />
 
-      <Space h="lg" />
-
-      <Input.Wrapper>
-        <Fields.Text
-          name="cashbackUsed"
-          label="Cashback miqdori"
-          placeholder={"0"}
-          inputWrapperOrder={["label", "input", "description"]}
-        />
-        <Input.Description className={styles.cashback_mount} component={"div"}>
-          Maximum cashback ishlatilishi:{" "}
-          <Badge color="teal">{item.cashbackAmount}</Badge>
-        </Input.Description>
-      </Input.Wrapper>
-
-      <Space h="lg" />
+      <Space h="md" />
 
       <div className={styles.row_wrapper}>
-        <Fields.Chip name="isCashbackUsed" color="teal">
+        <Fields.Chip
+          name="isCashbackUsed"
+          classNames={{ label: styles.chip_label }}
+        >
           Keshbekni ishlatish
         </Fields.Chip>
-        <Fields.Chip name="frontSeat" color="teal">
+        <Fields.Chip name="frontSeat" classNames={{ label: styles.chip_label }}>
           Oldingi o‘rindiqni band qilish
         </Fields.Chip>
       </div>
 
-      <Space h="lg" />
+      <Space h="md" />
     </>
   );
 };

@@ -2,6 +2,7 @@
   display: grid;
   border-radius: 5px;
   background-color: #edf1f7;
+  border: 1px solid #e6e6e6;
   grid-template-columns: 1fr 1fr;
 
   @media (max-width: 768px) {
@@ -13,10 +14,10 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
-  padding: 16px;
+  padding: 8px;
   min-height: 100px;
   border-radius: 5px;
-  background: #edf1f7;
+  background-color: #f0f4f6f4 !important;
 }
 
 .header {
@@ -29,7 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 10px;
+  padding: 4px 6px;
   border-radius: 4px;
   border-width: 1px;
   border-style: solid;
@@ -55,13 +56,17 @@
   }
 
   &.indigo {
-    background-color: #c2a9fc62;
-    border-color: #bb9bf7;
+    background-color: #f7ccff;
+    border-color: #f09aff;
   }
 }
 
 .icon {
-  font-size: 20px;
+  width: 22px;
+
+  @media (max-width: 768px) {
+    width: 18px;
+  }
 }
 
 .title {
@@ -69,6 +74,10 @@
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+  }
 }
 
 .label {
@@ -76,13 +85,21 @@
   margin-top: 6px;
   font-size: 16px;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 }
 
 .value {
   color: #000;
-  margin-top: 6px;
+  margin-top: 4px;
   font-size: 16px;
   font-weight: 500;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 }
 
 .promocode_copy {

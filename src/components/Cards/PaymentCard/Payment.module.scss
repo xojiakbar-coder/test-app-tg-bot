@@ -3,7 +3,6 @@
   grid-template-columns: 200px 200px;
   gap: 20px;
   width: 100%;
-  margin-top: 6px;
 
   @media (max-width: 567px) {
     gap: 8px;
@@ -14,7 +13,7 @@
   }
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 120px 120px;
   }
 }
 
@@ -48,10 +47,5 @@
 
 .active {
   border: 1px solid rgb(13, 195, 150);
-  background: linear-gradient(
-    90deg,
-    rgb(11, 82, 56),
-    rgb(7, 78, 56),
-    rgb(6, 82, 63)
-  );
+  background: rgba(18, 144, 104, 1);
 }

@@ -19,8 +19,14 @@ const NewOrder = () => {
           return (
             <>
               <Form />
-              <Button full effective htmlType="submit" disabled={isLoading}>
-                {isLoading ? "Yuborilmoqda..." : "Buyurtma berish"}
+              <Button
+                full
+                effective
+                htmlType="submit"
+                loading={isLoading}
+                disabled={isLoading}
+              >
+                Buyurtma berish
               </Button>
             </>
           );

@@ -3,7 +3,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   width: 100%;
-  margin-top: 6px;
 
   @media (max-width: 567px) {
     gap: 8px;
@@ -15,11 +14,11 @@
   cursor: pointer;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
   width: 100%;
   min-width: 40px;
-  padding: 12px 8px;
+  padding: 10px 8px;
   border-radius: 10px;
   border: 1px solid rgb(235, 238, 203);
   background: linear-gradient(
@@ -32,26 +31,28 @@
 
 .car_photo {
   width: 160px;
-
-  @media (max-width: 768px) {
-    width: 90px;
-  }
 }
 
 .content {
-  margin-top: 8px;
   font-size: 14px;
   font-weight: 600;
   user-select: none;
   text-align: center;
 }
 
+.standart {
+  width: 70px;
+}
+
+.comfort {
+  width: 55px;
+}
+
+.bussiness {
+  width: 70px;
+}
+
 .active {
-  border: 1px solid rgb(57, 248, 255);
-  background: linear-gradient(
-    90deg,
-    rgb(10, 88, 60),
-    rgb(10, 90, 65),
-    rgb(9, 90, 70)
-  );
+  border: 1px solid rgb(13, 195, 150);
+  background: rgba(18, 144, 104, 1);
 }

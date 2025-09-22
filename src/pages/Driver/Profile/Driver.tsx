@@ -11,13 +11,20 @@ import { Button } from "@/components/Button";
 import { Spinner } from "@/components/Spinner";
 import { Placeholder } from "@/components/Placeholder";
 
+import { hideBackButton } from "@telegram-apps/sdk-react";
+
 // styles
 import styles from "./Driver.module.scss";
+import { useEffect } from "react";
 
 const Driver = () => {
   const user = storage.local.get("user");
   const navigate = useNavigate();
   const { driver, isLoading, isFetched } = useDriver();
+
+  useEffect(() => {
+    hideBackButton();
+  }, []);
 
   if (isFetched && !driver?.id) {
     return (
@@ -40,11 +47,11 @@ const Driver = () => {
             <Avatar src={user.photoUrl} radius="xl" size="lg" />
           )}
           {!user?.photoUrl && (
-            <Avatar radius="xl" size="lg" color="indigo">
-              {user?.firstName?.charAt(0).toUpperCase()}
+            <Avatar radius="xl" size="lg" color="blue">
+              {user?.first_name?.charAt(0).toUpperCase()}
             </Avatar>
           )}
-          <h2 className={styles.name}>{user?.firstName}</h2>
+          <h2 className={styles.name}>{user?.first_name}</h2>
         </div>
 
         {isFetched && driver?.id && <Cards.DrvierDataCard data={driver} />}

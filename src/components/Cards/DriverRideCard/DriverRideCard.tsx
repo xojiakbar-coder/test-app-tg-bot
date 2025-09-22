@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as Types from "@/modules/driver/types";
 
-import { Badge, Flex, Text } from "@mantine/core";
+import { Badge, Flex } from "@mantine/core";
 import { Button } from "@/components/Button";
 
 import { useCompleteRide } from "@/modules/driver/hooks";
@@ -9,13 +9,14 @@ import { useCompleteRide } from "@/modules/driver/hooks";
 // styles
 import cx from "clsx";
 import styles from "./DriverRideCard.module.scss";
+import dayjs from "dayjs";
 
 const DriverRideCard = ({
   data,
   mutation,
   isPending,
 }: {
-  isPending: boolean;
+  isPending?: boolean;
   data: Types.IEntity.RecentRide;
   mutation?: (params: { rideId: number }) => void;
 }) => {
@@ -48,6 +49,7 @@ const DriverRideCard = ({
       <p>
         <strong>Borish manzili:</strong> {data.route.finish.name}
       </p>
+
       <p>
         <strong>Yaratilgan:</strong> {data.createdAt}
       </p>
@@ -64,31 +66,43 @@ const DriverRideCard = ({
               <p>
                 <strong>Yo‘lovchi:</strong> {item.passenger.fullName}
               </p>
-              <>
-                <p>
-                  <strong>To‘lo‘v turi:</strong>{" "}
-                  {item.paymentType === "Cash" ? "Naqd pul" : "Kartadan"}
-                </p>
-                <p>
-                  <strong>Telefon raqami:</strong> {item.passenger.phoneNumber}
-                </p>
-                {item.ridePrice !== null && item.ridePrice !== "" && (
-                  <>
+              <p>
+                <strong>Qo‘shimcha yuk:</strong> {item.extraLuggage || "Yo'q"}
+              </p>
+              <p>
+                <strong>Old o'rindiq:</strong>{" "}
+                {item.frontSeat ? "Band qilingan" : "Band qilinmagan"}
+              </p>
+              <p>
+                <strong>Jo'nash sanasi:</strong>{" "}
+                {`${dayjs(item.dateOfDeparture).format("YYYY-MM-DD")} - ${dayjs(
+                  item.dateOfDeparture
+                ).format("HH:mm:ss")}`}
+              </p>
+              <p>
+                <strong>Telefon raqami:</strong> {item.passenger.phoneNumber}
+              </p>
+              <p>
+                <strong>To‘lo‘v turi:</strong>{" "}
+                {item.paymentType === "Cash" ? "Naqd pul" : "Kartadan"}
+              </p>
+
+              {item.ridePrice !== null && item.ridePrice !== "" && (
+                <>
+                  <p>
+                    <strong>Xizmat narxi:</strong> {item.ridePrice}
+                  </p>
+                  {item.cashbackUsed && (
                     <p>
-                      <strong>Xizmat narxi:</strong> {item.ridePrice}
+                      <strong>Keshbekdan:</strong> {item.cashbackUsed}
                     </p>
-                    {item.cashbackUsed && (
-                      <p>
-                        <strong>Keshbekdan:</strong> {`${item.cashbackUsed}%`}
-                      </p>
-                    )}
-                    <p className={styles.price}>
-                      <strong>To‘lo‘v miqdori:</strong>{" "}
-                      {`${(+item.ridePrice * item.cashbackUsed) / 100} so‘m`}
-                    </p>
-                  </>
-                )}
-              </>
+                  )}
+                  <p className={styles.price}>
+                    <strong>To‘lo‘v miqdori:</strong>{" "}
+                    {+item.ridePrice - item.cashbackUsed}
+                  </p>
+                </>
+              )}
             </div>
           );
         })}
